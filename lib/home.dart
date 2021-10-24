@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'card_one.dart';
+import 'card_two.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,9 +15,7 @@ class _HomeState extends State<Home> {
 
   static final List<Widget> _pages = [
     const CardOne(),
-    Container(
-      color: Colors.green,
-    ),
+    const CardTwo(),
     Container(
       color: Colors.blue,
     ),
