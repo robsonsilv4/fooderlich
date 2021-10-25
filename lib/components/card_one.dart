@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'fooderlich_theme.dart';
+import '../fooderlich_theme.dart';
 
 class CardOne extends StatelessWidget {
   const CardOne({Key? key}) : super(key: key);
