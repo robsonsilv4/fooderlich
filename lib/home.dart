@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'components/components.dart';
-
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,9 +11,9 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = [
-    const CardOne(),
-    const CardTwo(),
-    const CardThree(),
+    Container(color: Colors.white),
+    Container(color: Colors.green),
+    Container(color: Colors.blue),
   ];
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
@@ -36,16 +34,16 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card 1',
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card 2',
+            icon: Icon(Icons.book),
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card 3',
+            icon: Icon(Icons.list),
+            label: 'To buy',
           ),
         ],
       ),

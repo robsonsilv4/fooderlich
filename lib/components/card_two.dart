@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
 
 import '../fooderlich_theme.dart';
 import 'author_card.dart';
 
 class CardTwo extends StatelessWidget {
-  const CardTwo({Key? key}) : super(key: key);
+  const CardTwo({Key? key, required this.recipe}) : super(key: key);
+
+  final ExploreRecipe recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +17,19 @@ class CardTwo extends StatelessWidget {
           width: 350,
           height: 450,
         ),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/mag5.png'),
+            image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
           children: [
-            const AuthorCard(
-              authorName: 'Mike Katz',
-              title: 'Smoothie Connoisseur',
-              imageProvider: AssetImage('assets/author_katz.jpeg'),
+            AuthorCard(
+              authorName: recipe.authorName,
+              title: recipe.role,
+              imageProvider: AssetImage(recipe.profileImage),
             ),
             Expanded(
               child: Stack(
@@ -35,7 +38,7 @@ class CardTwo extends StatelessWidget {
                     bottom: 16,
                     right: 16,
                     child: Text(
-                      'Recipe',
+                      recipe.title,
                       style: FooderlichTheme.lightTextTheme.headline1,
                     ),
                   ),
@@ -45,7 +48,7 @@ class CardTwo extends StatelessWidget {
                     child: RotatedBox(
                       quarterTurns: 3,
                       child: Text(
-                        'Smoothies',
+                        recipe.subtitle,
                         style: FooderlichTheme.lightTextTheme.headline1,
                       ),
                     ),

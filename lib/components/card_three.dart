@@ -1,8 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/fooderlich_theme.dart';
+import 'package:fooderlich/models/models.dart';
 
 class CardThree extends StatelessWidget {
-  const CardThree({Key? key}) : super(key: key);
+  const CardThree({
+    Key? key,
+    required this.recipe,
+  }) : super(key: key);
+
+  final ExploreRecipe recipe;
+
+  List<Widget> _createTagChips() {
+    final chips = <Widget>[];
+    recipe.tags.take(6).forEach(
+      (element) {
+        final chip = Chip(
+          label: Text(
+            element,
+            style: FooderlichTheme.darkTextTheme.bodyText1,
+          ),
+          backgroundColor: Colors.black.withOpacity(0.7),
+        );
+        chips.add(chip);
+      },
+    );
+    return chips;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +35,12 @@ class CardThree extends StatelessWidget {
           width: 350,
           height: 450,
         ),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/mag2.png'),
+            image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Stack(
           children: [
@@ -39,7 +62,7 @@ class CardThree extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Recipe Trends',
+                    recipe.title,
                     style: FooderlichTheme.darkTextTheme.headline2,
                   ),
                   const SizedBox(height: 30),
@@ -50,66 +73,7 @@ class CardThree extends StatelessWidget {
               child: Wrap(
                 alignment: WrapAlignment.start,
                 spacing: 12,
-                children: [
-                  Chip(
-                    label: Text(
-                      'Healthy',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                    onDeleted: () => debugPrint('Deleted'),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Vegan',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                    onDeleted: () => debugPrint('Deleted'),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Carrots',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Greens',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Wheat',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Pescaterian',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Mint',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                  ),
-                  Chip(
-                    label: Text(
-                      'Lemongrass',
-                      style: FooderlichTheme.darkTextTheme.bodyText1,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.7),
-                  ),
-                ],
+                children: _createTagChips(),
               ),
             ),
           ],
