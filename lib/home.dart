@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = [
-    ExploreScreen(),
+    const ExploreScreen(),
     RecipesScreen(),
     Container(color: Colors.blue),
   ];
