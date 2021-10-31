@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   static final List<Widget> _pages = [
     const ExploreScreen(),
     RecipesScreen(),
-    Container(color: Colors.blue),
+    const GroceryScreen(),
   ];
 
   void _onItemTapped(int index) => setState(() => _selectedIndex = index);
