@@ -29,7 +29,10 @@ class _HomeState extends State<Home> {
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
-          body: _pages[tabManager.selectedTab],
+          body: IndexedStack(
+            index: tabManager.selectedTab,
+            children: _pages,
+          ),
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor:
                 Theme.of(context).textSelectionTheme.selectionColor,
