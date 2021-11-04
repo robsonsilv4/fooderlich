@@ -21,9 +21,8 @@ class FooderlishApp extends StatelessWidget {
       theme: theme,
       home: MultiProvider(
         providers: [
-          ChangeNotifierProvider(
-            create: (context) => TabManager(),
-          ),
+          ChangeNotifierProvider(create: (_) => TabManager()),
+          ChangeNotifierProvider(create: (_) => GroceryManager()),
         ],
         child: const Home(),
       ),
