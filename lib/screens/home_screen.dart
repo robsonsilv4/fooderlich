@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
 import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -7,6 +8,16 @@ class HomeScreen extends StatefulWidget {
     Key? key,
     required this.currentTab,
   }) : super(key: key);
+
+  static MaterialPage page(int currentTab) {
+    return MaterialPage(
+      name: FooderlichPages.homePath,
+      key: ValueKey(FooderlichPages.homePath),
+      child: HomeScreen(
+        currentTab: currentTab,
+      ),
+    );
+  }
 
   final int currentTab;
 
