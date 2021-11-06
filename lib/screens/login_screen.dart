@@ -25,28 +25,37 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(
-                height: 200,
-                child: Image(
-                  image: AssetImage('assets/fooderlich_assets/rw_logo.png'),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(
+                        height: 200,
+                        child: Image(
+                          image: AssetImage(
+                              'assets/fooderlich_assets/rw_logo.png'),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      _buildTextField(username ?? '🍔 username'),
+                      const SizedBox(height: 16),
+                      _buildTextField('🎹 password'),
+                      const SizedBox(height: 16),
+                      _buildButton(context),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              _buildTextField(username ?? '🍔 username'),
-              const SizedBox(height: 16),
-              _buildTextField('🎹 password'),
-              const SizedBox(height: 16),
-              _buildButton(context),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
