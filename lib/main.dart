@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'fooderlich_theme.dart';
 import 'models/models.dart';
-import 'screens/screens.dart';
+import 'navigation/navigation.dart';
 
 void main() {
   runApp(const FooderlishApp());
@@ -17,12 +17,29 @@ class FooderlishApp extends StatefulWidget {
 }
 
 class _FooderlishAppState extends State<FooderlishApp> {
+  late AppRouter _appRouter;
+
+  final _appStateManager = AppStateManager();
+  final _profileManager = ProfileManager();
+  final _groceryManager = GroceryManager();
+
+  @override
+  void initState() {
+    _appRouter = AppRouter(
+      appStateManager: _appStateManager,
+      profileManager: _profileManager,
+      groceryManager: _groceryManager,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ProfileManager()),
-        ChangeNotifierProvider(create: (_) => GroceryManager()),
+        ChangeNotifierProvider(create: (_) => _appStateManager),
+        ChangeNotifierProvider(create: (_) => _profileManager),
+        ChangeNotifierProvider(create: (_) => _groceryManager),
       ],
       child: Consumer<ProfileManager>(
         builder: (context, profileManager, child) {
@@ -36,7 +53,7 @@ class _FooderlishAppState extends State<FooderlishApp> {
           return MaterialApp(
             title: 'Fooderlich',
             theme: theme,
-            home: const SplashScreen(),
+            home: Router(routerDelegate: _appRouter),
           );
         },
       ),
