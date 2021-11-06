@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import '../models/models.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
     Key? key,
-    required this.username,
+    this.username,
   }) : super(key: key);
+
+  static MaterialPage route() => MaterialPage(
+        name: FooderlichPages.loginPath,
+        key: ValueKey(FooderlichPages.loginPath),
+        child: const LoginScreen(),
+      );
 
   final String? username;
 
@@ -68,7 +78,9 @@ class LoginScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        onPressed: () async {},
+        onPressed: () {
+          context.read<AppStateManager>().login('username', 'password');
+        },
         child: const Text(
           'Login',
           style: TextStyle(
