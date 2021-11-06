@@ -10,6 +10,14 @@ class ProfileScreen extends StatelessWidget {
     required this.user,
   }) : super(key: key);
 
+  static MaterialPage page(User user) {
+    return MaterialPage(
+      name: FooderlichPages.profilePath,
+      key: ValueKey(FooderlichPages.profilePath),
+      child: ProfileScreen(user: user),
+    );
+  }
+
   final User user;
 
   @override
@@ -17,7 +25,9 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<ProfileManager>().tapOnProfile(false);
+          },
           icon: const Icon(Icons.close),
         ),
       ),
@@ -84,11 +94,16 @@ class ProfileScreen extends StatelessWidget {
         _buildDarkModeRow(context),
         ListTile(
           title: const Text('View raywenderlich.com'),
-          onTap: () {},
+          onTap: () {
+            context.read<ProfileManager>().tapOnRayderlich(true);
+          },
         ),
         ListTile(
           title: const Text('Log out'),
-          onTap: () {},
+          onTap: () {
+            context.read<ProfileManager>().tapOnProfile(false);
+            context.read<AppStateManager>().logOut();
+          },
         ),
       ],
     );

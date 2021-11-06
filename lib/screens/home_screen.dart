@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'assets/profile_pics/person_stef.jpeg',
           ),
         ),
-        onTap: () {},
+        onTap: () => context.read<ProfileManager>().tapOnProfile(true),
       ),
     );
   }

@@ -49,6 +49,9 @@ class AppRouter extends RouterDelegate
               groceryManager.updateItem(item, index);
             },
           ),
+        if (profileManager.didSelectUser)
+          ProfileScreen.page(profileManager.getUser),
+        if (profileManager.didTapOnRaywenderlich) WebViewScreen.page(),
       ],
     );
   }
@@ -76,6 +79,14 @@ class AppRouter extends RouterDelegate
 
     if (route.settings.name == FooderlichPages.groceryItemDetails) {
       groceryManager.groceryItemTapped(-1);
+    }
+
+    if (route.settings.name == FooderlichPages.profilePath) {
+      profileManager.tapOnProfile(false);
+    }
+
+    if (route.settings.name == FooderlichPages.raywenderlich) {
+      profileManager.tapOnRayderlich(false);
     }
 
     return true;
