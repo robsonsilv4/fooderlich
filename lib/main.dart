@@ -2,29 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'fooderlich_theme.dart';
-import 'home.dart';
 import 'models/models.dart';
+import 'screens/screens.dart';
 
 void main() {
   runApp(const FooderlishApp());
 }
 
-class FooderlishApp extends StatelessWidget {
+class FooderlishApp extends StatefulWidget {
   const FooderlishApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final theme = FooderlichTheme.dark();
+  State<FooderlishApp> createState() => _FooderlishAppState();
+}
 
-    return MaterialApp(
-      title: 'Fooderlish',
-      theme: theme,
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => TabManager()),
-          ChangeNotifierProvider(create: (_) => GroceryManager()),
-        ],
-        child: const Home(),
+class _FooderlishAppState extends State<FooderlishApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProfileManager()),
+        ChangeNotifierProvider(create: (_) => GroceryManager()),
+      ],
+      child: Consumer<ProfileManager>(
+        builder: (context, profileManager, child) {
+          ThemeData theme;
+          if (profileManager.darkMode) {
+            theme = FooderlichTheme.dark();
+          } else {
+            theme = FooderlichTheme.light();
+          }
+
+          return MaterialApp(
+            title: 'Fooderlich',
+            theme: theme,
+            home: const SplashScreen(),
+          );
+        },
       ),
     );
   }
