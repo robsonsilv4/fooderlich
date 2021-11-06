@@ -24,21 +24,7 @@ class GroceryScreen extends StatelessWidget {
     return Scaffold(
       body: _buildGroceryScreen(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final manager = context.read<GroceryManager>();
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => GroceryItemScreen(
-                onCreate: (item) {
-                  manager.addItem(item);
-                  Navigator.pop(context);
-                },
-                onUpdate: (_) {},
-              ),
-            ),
-          );
-        },
+        onPressed: () => context.read<GroceryManager>().createNewItem(),
         child: const Icon(Icons.add),
       ),
     );

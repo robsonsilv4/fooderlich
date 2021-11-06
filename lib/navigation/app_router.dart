@@ -35,6 +35,20 @@ class AppRouter extends RouterDelegate
           OnboardingScreen.page(),
         if (appStateManager.isOnboardingComplete)
           HomeScreen.page(appStateManager.selectedTab),
+        if (groceryManager.isCreatingNewItem)
+          GroceryItemScreen.page(
+            onCreate: (item) => groceryManager.addItem(item),
+            onUpdate: (item, index) => {},
+          ),
+        if (groceryManager.selectedIndex != -1)
+          GroceryItemScreen.page(
+            item: groceryManager.selectedGroceryItem,
+            index: groceryManager.selectedIndex,
+            onCreate: (_) {},
+            onUpdate: (item, index) {
+              groceryManager.updateItem(item, index);
+            },
+          ),
       ],
     );
   }
@@ -58,6 +72,10 @@ class AppRouter extends RouterDelegate
 
     if (route.settings.name == FooderlichPages.onboardingPath) {
       appStateManager.logOut();
+    }
+
+    if (route.settings.name == FooderlichPages.groceryItemDetails) {
+      groceryManager.groceryItemTapped(-1);
     }
 
     return true;

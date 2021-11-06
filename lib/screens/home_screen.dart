@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/models.dart';
 import 'screens.dart';
@@ -44,14 +45,18 @@ class _HomeScreenState extends State<HomeScreen> {
           _profileButton(),
         ],
       ),
-      body: IndexedStack(
-        index: widget.currentTab,
-        children: _pages,
+      body: Consumer<AppStateManager>(
+        builder: (context, appStateManager, child) {
+          return IndexedStack(
+            index: widget.currentTab,
+            children: _pages,
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: widget.currentTab,
-        onTap: (index) => {},
+        onTap: (index) => context.read<AppStateManager>().goToTab(index),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),

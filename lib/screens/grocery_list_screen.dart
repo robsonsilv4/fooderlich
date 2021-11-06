@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/components/components.dart';
-import 'package:fooderlich/screens/grocery_item_screen.dart';
 
+import '../components/components.dart';
 import '../models/models.dart';
 
 class GroceryListScreen extends StatelessWidget {
@@ -40,21 +39,7 @@ class GroceryListScreen extends StatelessWidget {
             );
           },
           child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GroceryItemScreen(
-                    originalItem: item,
-                    onCreate: (_) {},
-                    onUpdate: (item) {
-                      manager.updateItem(item, index);
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              );
-            },
+            onTap: () => manager.groceryItemTapped(index),
             child: GroceryTile(
               key: Key(item.id),
               item: item,
