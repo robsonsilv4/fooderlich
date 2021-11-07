@@ -18,7 +18,7 @@ class FooderlishApp extends StatefulWidget {
 
 class _FooderlishAppState extends State<FooderlishApp> {
   late AppRouter _appRouter;
-
+  final _routeParser = AppRouteParser();
   final _appStateManager = AppStateManager();
   final _profileManager = ProfileManager();
   final _groceryManager = GroceryManager();
@@ -50,13 +50,12 @@ class _FooderlishAppState extends State<FooderlishApp> {
             theme = FooderlichTheme.light();
           }
 
-          return MaterialApp(
+          return MaterialApp.router(
             title: 'Fooderlich',
             theme: theme,
-            home: Router(
-              routerDelegate: _appRouter,
-              backButtonDispatcher: RootBackButtonDispatcher(),
-            ),
+            routerDelegate: _appRouter,
+            routeInformationParser: _routeParser,
+            backButtonDispatcher: RootBackButtonDispatcher(),
           );
         },
       ),
