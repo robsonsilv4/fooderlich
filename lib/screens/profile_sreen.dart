@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../components/components.dart';
 import '../models/models.dart';
@@ -94,8 +96,12 @@ class ProfileScreen extends StatelessWidget {
         _buildDarkModeRow(context),
         ListTile(
           title: const Text('View raywenderlich.com'),
-          onTap: () {
-            context.read<ProfileManager>().tapOnRayderlich(true);
+          onTap: () async {
+            if (kIsWeb) {
+              await launch('https://www.raywenderlich.com/');
+            } else {
+              context.read<ProfileManager>().tapOnRayderlich(true);
+            }
           },
         ),
         ListTile(
