@@ -7,12 +7,12 @@ class AppRouteParser extends RouteInformationParser<AppLink> {
   Future<AppLink> parseRouteInformation(
     RouteInformation routeInformation,
   ) async {
-    return AppLink.fromLocation(routeInformation.location);
+    return AppLink.fromLocation(routeInformation.uri.toString());
   }
 
   @override
   RouteInformation restoreRouteInformation(AppLink configuration) {
     final location = configuration.toLocation();
-    return RouteInformation(location: location);
+    return RouteInformation(uri: Uri.parse(location));
   }
 }

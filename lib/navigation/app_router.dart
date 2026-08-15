@@ -27,7 +27,7 @@ class AppRouter extends RouterDelegate<AppLink>
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      onPopPage: _handlePopPage,
+      onDidRemovePage: _handleDidRemovePage,
       pages: [
         if (!appStateManager.isInitialized) SplashScreen.page(),
         if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
@@ -114,27 +114,21 @@ class AppRouter extends RouterDelegate<AppLink>
     }
   }
 
-  bool _handlePopPage(Route<dynamic> route, dynamic result) {
-    if (!route.didPop(result)) {
-      return false;
-    }
-
-    if (route.settings.name == FooderlichPages.onboardingPath) {
+  void _handleDidRemovePage(Page<Object?> page) {
+    if (page.name == FooderlichPages.onboardingPath) {
       appStateManager.logOut();
     }
 
-    if (route.settings.name == FooderlichPages.groceryItemDetails) {
+    if (page.name == FooderlichPages.groceryItemDetails) {
       groceryManager.groceryItemTapped(-1);
     }
 
-    if (route.settings.name == FooderlichPages.profilePath) {
+    if (page.name == FooderlichPages.profilePath) {
       profileManager.tapOnProfile(false);
     }
 
-    if (route.settings.name == FooderlichPages.raywenderlich) {
+    if (page.name == FooderlichPages.raywenderlich) {
       profileManager.tapOnRayderlich(false);
     }
-
-    return true;
   }
 }

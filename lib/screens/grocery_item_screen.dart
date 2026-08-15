@@ -371,7 +371,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           divisions: 100,
           value: _currentSliderValue.toDouble(),
           label: _currentSliderValue.toInt().toString(),
-          inactiveColor: _currentColor.withOpacity(0.5),
+          inactiveColor: _currentColor.withValues(alpha: 0.5),
           activeColor: _currentColor,
           onChanged: (value) => setState(
             () => _currentSliderValue = value.toInt(),
