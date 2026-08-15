@@ -39,13 +39,13 @@ class AppRouter extends RouterDelegate<AppLink>
         if (groceryManager.isCreatingNewItem)
           GroceryItemScreen.page(
             onCreate: groceryManager.addItem,
-            onUpdate: (item, index) {}, // coverage:ignore-line
+            onUpdate: (item, index) {},
           ),
         if (groceryManager.selectedIndex != -1)
           GroceryItemScreen.page(
             item: groceryManager.selectedGroceryItem,
             index: groceryManager.selectedIndex,
-            onCreate: (_) {}, // coverage:ignore-line
+            onCreate: (_) {},
             onUpdate: groceryManager.updateItem,
           ),
         if (profileManager.didSelectUser)

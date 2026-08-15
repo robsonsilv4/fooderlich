@@ -4,11 +4,9 @@ import 'package:fooderlich/models/models.dart';
 import 'package:fooderlich/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 
-// coverage:ignore-start
 void main() {
   runApp(const FooderlishApp());
 }
-// coverage:ignore-end
 
 class FooderlishApp extends StatefulWidget {
   const FooderlishApp({
