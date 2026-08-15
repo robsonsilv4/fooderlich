@@ -8,24 +8,6 @@ class RecipeCardType {
 }
 
 class ExploreRecipe {
-  String id;
-  String cardType;
-  String title;
-  String subtitle;
-  String backgroundImage;
-  String backgroundImageSource;
-  String message;
-  String authorName;
-  String role;
-  String profileImage;
-  int durationInMinutes;
-  String dietType;
-  int calories;
-  List<String> tags;
-  String description;
-  String source;
-  List<Ingredients> ingredients;
-  List<Instruction> instructions;
 
   ExploreRecipe({
     required this.id,
@@ -85,4 +67,22 @@ class ExploreRecipe {
       instructions: instructions,
     );
   }
+  String id;
+  String cardType;
+  String title;
+  String subtitle;
+  String backgroundImage;
+  String backgroundImageSource;
+  String message;
+  String authorName;
+  String role;
+  String profileImage;
+  int durationInMinutes;
+  String dietType;
+  int calories;
+  List<String> tags;
+  String description;
+  String source;
+  List<Ingredients> ingredients;
+  List<Instruction> instructions;
 }

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
-import '../models/models.dart';
-
 class GroceryItemScreen extends StatefulWidget {
   const GroceryItemScreen({
-    super.key,
-    required this.onCreate,
-    required this.onUpdate,
+    required this.onCreate, required this.onUpdate, super.key,
     this.originalItem,
     this.index = -1,
   })  : isUpdating = (originalItem != null);
@@ -23,10 +20,8 @@ class GroceryItemScreen extends StatefulWidget {
   final int index;
 
   static MaterialPage page({
-    GroceryItem? item,
+    required Function(GroceryItem) onCreate, required Function(GroceryItem, int) onUpdate, GroceryItem? item,
     int index = -1,
-    required Function(GroceryItem) onCreate,
-    required Function(GroceryItem, int) onUpdate,
   }) {
     return MaterialPage(
       name: FooderlichPages.groceryItemDetails,
@@ -231,7 +226,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -314,7 +309,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             Text(
               'Color',
               style: GoogleFonts.lato(fontSize: 28),
-            )
+            ),
           ],
         ),
         TextButton(
@@ -359,17 +354,16 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             ),
             const SizedBox(width: 16),
             Text(
-              _currentSliderValue.toInt().toString(),
+              _currentSliderValue.toString(),
               style: GoogleFonts.lato(fontSize: 18),
             ),
           ],
         ),
         Slider(
-          min: 0,
           max: 100,
           divisions: 100,
           value: _currentSliderValue.toDouble(),
-          label: _currentSliderValue.toInt().toString(),
+          label: _currentSliderValue.toString(),
           inactiveColor: _currentColor.withValues(alpha: 0.5),
           activeColor: _currentColor,
           onChanged: (value) => setState(

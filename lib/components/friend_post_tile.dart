@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../models/models.dart';
-import 'circle_image.dart';
+import 'package:fooderlich/components/circle_image.dart';
+import 'package:fooderlich/models/models.dart';
 
 class FriendPostTile extends StatelessWidget {
   const FriendPostTile({
-    super.key,
-    required this.post,
+    required this.post, super.key,
   });
 
   final Post post;
@@ -20,7 +18,6 @@ class FriendPostTile extends StatelessWidget {
           imageProvider: AssetImage(
             post.profileImageUrl,
           ),
-          imageRadius: 20,
         ),
         const SizedBox(width: 16),
         Expanded(

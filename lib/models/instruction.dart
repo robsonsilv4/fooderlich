@@ -1,9 +1,6 @@
 part of 'explore_recipe.dart';
 
 class Instruction {
-  String imageUrl;
-  String description;
-  int durationInMinutes;
 
   Instruction({
     required this.imageUrl,
@@ -18,4 +15,7 @@ class Instruction {
       durationInMinutes: json['durationInMinutes'] ?? '',
     );
   }
+  String imageUrl;
+  String description;
+  int durationInMinutes;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
-
-import '../models/models.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,11 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Image(
               height: 200,
               image: AssetImage('assets/fooderlich_assets/rw_logo.png'),

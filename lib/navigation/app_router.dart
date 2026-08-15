@@ -1,14 +1,10 @@
 import 'package:flutter/widgets.dart';
-
-import '../models/models.dart';
-import '../screens/screens.dart';
-import 'navigation.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/navigation/navigation.dart';
+import 'package:fooderlich/screens/screens.dart';
 
 class AppRouter extends RouterDelegate<AppLink>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  final AppStateManager appStateManager;
-  final ProfileManager profileManager;
-  final GroceryManager groceryManager;
 
   AppRouter({
     required this.appStateManager,
@@ -19,6 +15,9 @@ class AppRouter extends RouterDelegate<AppLink>
     profileManager.addListener(notifyListeners);
     groceryManager.addListener(notifyListeners);
   }
+  final AppStateManager appStateManager;
+  final ProfileManager profileManager;
+  final GroceryManager groceryManager;
 
   @override
   GlobalKey<NavigatorState> navigatorKey;
@@ -38,7 +37,7 @@ class AppRouter extends RouterDelegate<AppLink>
           HomeScreen.page(appStateManager.selectedTab),
         if (groceryManager.isCreatingNewItem)
           GroceryItemScreen.page(
-            onCreate: (item) => groceryManager.addItem(item),
+            onCreate: groceryManager.addItem,
             onUpdate: (item, index) => {},
           ),
         if (groceryManager.selectedIndex != -1)
@@ -67,11 +66,10 @@ class AppRouter extends RouterDelegate<AppLink>
 
   // Web and deep linking
   @override
-  Future<void> setNewRoutePath(configuration) async {
+  Future<void> setNewRoutePath(AppLink configuration) async {
     switch (configuration.location) {
       case AppLink.kProfilePath:
         profileManager.tapOnProfile(true);
-        break;
       case AppLink.kItemPath:
         final itemId = configuration.itemId;
         if (itemId != null) {
@@ -80,12 +78,10 @@ class AppRouter extends RouterDelegate<AppLink>
           groceryManager.createNewItem();
         }
         profileManager.tapOnProfile(false);
-        break;
       case AppLink.kHomePath:
         appStateManager.goToTab(configuration.currentTab ?? 0);
         profileManager.tapOnProfile(false);
         groceryManager.groceryItemTapped(-1);
-        break;
       default:
         break;
     }

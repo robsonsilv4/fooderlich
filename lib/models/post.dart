@@ -1,9 +1,4 @@
 class Post {
-  String id;
-  String profileImageUrl;
-  String comment;
-  String foodPictureUrl;
-  String timestamp;
 
   Post({
     required this.id,
@@ -22,4 +17,9 @@ class Post {
       timestamp: json['timestamp'] ?? '',
     );
   }
+  String id;
+  String profileImageUrl;
+  String comment;
+  String foodPictureUrl;
+  String timestamp;
 }

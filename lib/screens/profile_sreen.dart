@@ -1,15 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../components/components.dart';
-import '../models/models.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
-    super.key,
-    required this.user,
+    required this.user, super.key,
   });
 
   static MaterialPage page(User user) {
@@ -35,7 +33,6 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 16),
             _buildProfile(),
@@ -84,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
             onChanged: (value) {
               context.read<ProfileManager>().darkMode = value;
             },
-          )
+          ),
         ],
       ),
     );

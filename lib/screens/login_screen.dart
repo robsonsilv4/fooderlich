@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
-
-import '../models/models.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
@@ -40,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                         height: 200,
                         child: Image(
                           image: AssetImage(
-                              'assets/fooderlich_assets/rw_logo.png'),
+                              'assets/fooderlich_assets/rw_logo.png',),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -67,7 +65,6 @@ class LoginScreen extends StatelessWidget {
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.green,
-            width: 1,
           ),
         ),
         focusedBorder: const OutlineInputBorder(

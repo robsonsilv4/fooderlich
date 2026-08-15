@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/components/author_card.dart';
+import 'package:fooderlich/fooderlich_theme.dart';
 import 'package:fooderlich/models/models.dart';
 
-import '../fooderlich_theme.dart';
-import 'author_card.dart';
-
 class CardTwo extends StatelessWidget {
-  const CardTwo({super.key, required this.recipe});
+  const CardTwo({required this.recipe, super.key});
 
   final ExploreRecipe recipe;
 

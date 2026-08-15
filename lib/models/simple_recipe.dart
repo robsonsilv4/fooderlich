@@ -1,10 +1,4 @@
 class SimpleRecipe {
-  String id;
-  String dishImage;
-  String title;
-  String duration;
-  String source;
-  List<String> information;
 
   SimpleRecipe({
     required this.id,
@@ -25,4 +19,10 @@ class SimpleRecipe {
       information: json['information'].cast<String>() as List<String>,
     );
   }
+  String id;
+  String dishImage;
+  String title;
+  String duration;
+  String source;
+  List<String> information;
 }

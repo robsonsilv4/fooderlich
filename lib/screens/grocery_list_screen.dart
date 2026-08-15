@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../components/components.dart';
-import '../models/models.dart';
+import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 
 class GroceryListScreen extends StatelessWidget {
   const GroceryListScreen({
-    super.key,
-    required this.manager,
+    required this.manager, super.key,
   });
 
   final GroceryManager manager;

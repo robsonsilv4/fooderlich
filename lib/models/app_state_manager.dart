@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
-import 'models.dart';
+import 'package:fooderlich/models/models.dart';
 
 class FooderlichTab {
   static const explore = 0;
@@ -22,7 +22,7 @@ class AppStateManager extends ChangeNotifier {
   bool get isOnboardingComplete => _onboardingComplete;
   int get selectedTab => _selectedTab;
 
-  void initializeApp() async {
+  Future<void> initializeApp() async {
     _loggedIn = await _appCache.isUserLoggedIn();
     _onboardingComplete = await _appCache.didCompleteOnboarding();
 
@@ -32,13 +32,13 @@ class AppStateManager extends ChangeNotifier {
     });
   }
 
-  void login(String username, String password) async {
+  Future<void> login(String username, String password) async {
     _loggedIn = true;
     await _appCache.cacheUser();
     notifyListeners();
   }
 
-  void completeOnboarding() async {
+  Future<void> completeOnboarding() async {
     _onboardingComplete = true;
     await _appCache.completeOnboarding();
     notifyListeners();
@@ -54,7 +54,7 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logOut() async {
+  Future<void> logOut() async {
     _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../models/models.dart';
-import 'components.dart';
+import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 
 class TodayRecipeListView extends StatelessWidget {
   const TodayRecipeListView({
-    super.key,
-    required this.recipes,
+    required this.recipes, super.key,
   });
 
   final List<ExploreRecipe> recipes;
@@ -55,7 +53,7 @@ class TodayRecipeListView extends StatelessWidget {
     } else if (recipe.cardType == RecipeCardType.card3) {
       return CardThree(recipe: recipe);
     } else {
-      throw Exception('This card doesn\'t exist yet');
+      throw Exception("This card doesn't exist yet");
     }
   }
 }

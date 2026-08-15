@@ -1,9 +1,6 @@
 part of 'explore_recipe.dart';
 
 class Ingredients {
-  String imageUrl;
-  String title;
-  String source;
 
   Ingredients({
     required this.imageUrl,
@@ -18,4 +15,7 @@ class Ingredients {
       source: json['source'] ?? '',
     );
   }
+  String imageUrl;
+  String title;
+  String source;
 }

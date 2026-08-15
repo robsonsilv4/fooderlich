@@ -4,8 +4,7 @@ import 'package:fooderlich/models/models.dart';
 
 class CardThree extends StatelessWidget {
   const CardThree({
-    super.key,
-    required this.recipe,
+    required this.recipe, super.key,
   });
 
   final ExploreRecipe recipe;
@@ -71,7 +70,6 @@ class CardThree extends StatelessWidget {
             ),
             Center(
               child: Wrap(
-                alignment: WrapAlignment.start,
                 spacing: 12,
                 children: _createTagChips(),
               ),

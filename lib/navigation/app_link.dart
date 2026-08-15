@@ -47,14 +47,14 @@ class AppLink {
       case kProfilePath:
         return kProfilePath;
       case kItemPath:
-        String loc = '$kItemPath?';
+        var loc = '$kItemPath?';
         loc += addKeyValuePair(
           key: kIdParam,
           value: itemId,
         );
         return Uri.encodeFull(loc);
       default:
-        String loc = '$kHomePath?';
+        var loc = '$kHomePath?';
         loc += addKeyValuePair(
           key: kTabParam,
           value: currentTab.toString(),

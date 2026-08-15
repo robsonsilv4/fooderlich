@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'models.dart';
+import 'package:fooderlich/models/models.dart';
 
 class ProfileManager extends ChangeNotifier {
   bool _didSelectUser = false;

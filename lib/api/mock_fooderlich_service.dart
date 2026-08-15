@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
-import '../models/models.dart';
+import 'package:fooderlich/models/models.dart';
 
 class MockFooderlichService {
   Future<ExploreData> getExploreData() async {
@@ -24,7 +24,7 @@ class MockFooderlichService {
     if (json['recipes'] != null) {
       final recipes = <ExploreRecipe>[];
       json['recipes'].forEach((value) {
-        recipes.add(ExploreRecipe.fromJson(value));
+        recipes.add(ExploreRecipe.fromJson(Color.toARGB32));
       });
       return recipes;
     } else {
@@ -44,7 +44,7 @@ class MockFooderlichService {
     if (json['feed'] != null) {
       final posts = <Post>[];
       json['feed'].forEach((value) {
-        posts.add(Post.fromJson(value));
+        posts.add(Post.fromJson(Color.toARGB32));
       });
       return posts;
     } else {
@@ -64,7 +64,7 @@ class MockFooderlichService {
     if (json['recipes'] != null) {
       final recipes = <SimpleRecipe>[];
       json['recipes'].forEach((value) {
-        recipes.add(SimpleRecipe.fromJson(value));
+        recipes.add(SimpleRecipe.fromJson(Color.toARGB32));
       });
       return recipes;
     } else {

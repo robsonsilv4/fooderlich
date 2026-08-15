@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../api/mock_fooderlich_service.dart';
-import '../components/components.dart';
-import '../models/models.dart';
+import 'package:fooderlich/api/mock_fooderlich_service.dart';
+import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -27,11 +27,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
       final outOfRange = controller.position.outOfRange;
 
       if (maxScroll && !outOfRange) {
-        debugPrint('I\'m at the bottom');
+        debugPrint("I'm at the bottom");
       }
 
       if (minScroll && !outOfRange) {
-        debugPrint('I\'m at the top');
+        debugPrint("I'm at the top");
       }
     }
   }

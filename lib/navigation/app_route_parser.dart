@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'navigation.dart';
+import 'package:fooderlich/navigation/navigation.dart';
 
 class AppRouteParser extends RouteInformationParser<AppLink> {
   @override

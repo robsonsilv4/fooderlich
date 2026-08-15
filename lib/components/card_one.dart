@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../fooderlich_theme.dart';
-import '../models/models.dart';
+import 'package:fooderlich/fooderlich_theme.dart';
+import 'package:fooderlich/models/models.dart';
 
 class CardOne extends StatelessWidget {
   const CardOne({
-    super.key,
-    required this.recipe,
+    required this.recipe, super.key,
   });
 
   final ExploreRecipe recipe;

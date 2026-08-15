@@ -4,27 +4,27 @@ import 'package:google_fonts/google_fonts.dart';
 class FooderlichTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyLarge: GoogleFonts.openSans(
-      fontSize: 14.0,
+      fontSize: 14,
       fontWeight: FontWeight.w700,
       color: Colors.black,
     ),
     displaySmall: GoogleFonts.openSans(
-      fontSize: 32.0,
+      fontSize: 32,
       fontWeight: FontWeight.bold,
       color: Colors.black,
     ),
     displayMedium: GoogleFonts.openSans(
-      fontSize: 21.0,
+      fontSize: 21,
       fontWeight: FontWeight.w700,
       color: Colors.black,
     ),
     displayLarge: GoogleFonts.openSans(
-      fontSize: 16.0,
+      fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
     titleLarge: GoogleFonts.openSans(
-      fontSize: 20.0,
+      fontSize: 20,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
@@ -32,27 +32,27 @@ class FooderlichTheme {
 
   static TextTheme darkTextTheme = TextTheme(
     bodyLarge: GoogleFonts.openSans(
-      fontSize: 14.0,
+      fontSize: 14,
       fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
     displaySmall: GoogleFonts.openSans(
-      fontSize: 32.0,
+      fontSize: 32,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
     displayMedium: GoogleFonts.openSans(
-      fontSize: 21.0,
+      fontSize: 21,
       fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
     displayLarge: GoogleFonts.openSans(
-      fontSize: 16.0,
+      fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
     titleLarge: GoogleFonts.openSans(
-      fontSize: 20.0,
+      fontSize: 20,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),

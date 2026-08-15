@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/screens/screens.dart';
 import 'package:provider/provider.dart';
-
-import '../models/models.dart';
-import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
-    super.key,
-    required this.currentTab,
+    required this.currentTab, super.key,
   });
 
   static MaterialPage page(int currentTab) {
