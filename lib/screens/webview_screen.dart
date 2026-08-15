@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/fooderlich_pages.dart';
 import 'package:fooderlich/models/models.dart';
@@ -21,12 +19,14 @@ class WebViewScreen extends StatefulWidget {
 }
 
 class _WebViewScreenState extends State<WebViewScreen> {
+  late final WebViewController _controller;
+
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) {
-      WebView.platform = SurfaceAndroidWebView();
-    }
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse('https://www.raywenderlich.com/'));
   }
 
   @override
@@ -35,8 +35,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
       appBar: AppBar(
         title: const Text('raywenderlich.com'),
       ),
-      body: const WebView(
-        initialUrl: 'https://www.raywenderlich.com/',
+      body: WebViewWidget(
+        controller: _controller,
       ),
     );
   }
