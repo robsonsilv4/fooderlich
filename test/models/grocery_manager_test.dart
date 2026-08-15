@@ -55,9 +55,9 @@ void main() {
         tags: [TestTag.unit],
         () {
           final item = buildItem('1');
-          manager.createNewItem();
-
-          manager.addItem(item);
+          manager
+            ..createNewItem()
+            ..addItem(item);
 
           expect(manager.groceryItems, hasLength(1));
           expect(manager.groceryItems.first.id, equals('1'));
@@ -71,10 +71,10 @@ void main() {
         'selects the item at the index',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1'));
-          manager.addItem(buildItem('2'));
-
-          manager.groceryItemTapped(1);
+          manager
+            ..addItem(buildItem('1'))
+            ..addItem(buildItem('2'))
+            ..groceryItemTapped(1);
 
           expect(manager.selectedIndex, equals(1));
           expect(manager.selectedGroceryItem?.id, equals('2'));
@@ -87,10 +87,10 @@ void main() {
         'selects the item with the given id',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1'));
-          manager.addItem(buildItem('2'));
-
-          manager.setSelectedGroceryItem('1');
+          manager
+            ..addItem(buildItem('1'))
+            ..addItem(buildItem('2'))
+            ..setSelectedGroceryItem('1');
 
           expect(manager.selectedIndex, equals(0));
           expect(manager.selectedGroceryItem?.id, equals('1'));
@@ -101,9 +101,9 @@ void main() {
         'does not select when no item matches',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1'));
-
-          manager.setSelectedGroceryItem('nope');
+          manager
+            ..addItem(buildItem('1'))
+            ..setSelectedGroceryItem('nope');
 
           expect(manager.selectedIndex, equals(-1));
           expect(manager.selectedGroceryItem, isNull);
@@ -116,10 +116,10 @@ void main() {
         'removes the item at the index',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1'));
-          manager.addItem(buildItem('2'));
-
-          manager.deleteItem(0);
+          manager
+            ..addItem(buildItem('1'))
+            ..addItem(buildItem('2'))
+            ..deleteItem(0);
 
           expect(manager.groceryItems, hasLength(1));
           expect(manager.groceryItems.first.id, equals('2'));
@@ -132,8 +132,9 @@ void main() {
         'replaces the item and clears selection',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1'));
-          manager.groceryItemTapped(0);
+          manager
+            ..addItem(buildItem('1'))
+            ..groceryItemTapped(0);
 
           final updated = buildItem('1');
           manager.updateItem(updated, 0);
@@ -150,9 +151,9 @@ void main() {
         'marks the item as complete',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1'));
-
-          manager.completeItem(0, change: true);
+          manager
+            ..addItem(buildItem('1'))
+            ..completeItem(0, change: true);
 
           expect(manager.groceryItems.first.isComplete, isTrue);
         },
@@ -162,9 +163,9 @@ void main() {
         'marks the item as incomplete',
         tags: [TestTag.unit],
         () {
-          manager.addItem(buildItem('1', isComplete: true));
-
-          manager.completeItem(0, change: false);
+          manager
+            ..addItem(buildItem('1', isComplete: true))
+            ..completeItem(0, change: false);
 
           expect(manager.groceryItems.first.isComplete, isFalse);
         },

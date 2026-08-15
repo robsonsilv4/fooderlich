@@ -19,7 +19,8 @@ void main() {
           });
 
           expect(post.id, equals('1'));
-          expect(post.profileImageUrl, equals('assets/profile_pics/person_ray.jpeg'));
+          expect(post.profileImageUrl,
+              equals('assets/profile_pics/person_ray.jpeg'),);
           expect(post.comment, equals('Great bread!'));
           expect(post.foodPictureUrl, equals('assets/food_pics/bread.png'));
           expect(post.timestamp, equals('2h'));

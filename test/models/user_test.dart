@@ -21,7 +21,8 @@ void main() {
         expect(user.firstName, equals('Robson'));
         expect(user.lastName, equals('Silva'));
         expect(user.role, equals('Flutterista'));
-        expect(user.profileImageUrl, equals('assets/profile_pics/person_stef.jpeg'));
+        expect(user.profileImageUrl,
+            equals('assets/profile_pics/person_stef.jpeg'),);
         expect(user.points, equals(100));
         expect(user.darkMode, isTrue);
       },

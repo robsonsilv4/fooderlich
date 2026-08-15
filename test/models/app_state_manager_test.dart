@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fooderlich/models/models.dart';
@@ -34,7 +36,7 @@ void main() {
 
             final future = manager.initializeApp();
             async.elapse(const Duration(milliseconds: 2000));
-            future.then((_) {});
+            unawaited(future);
 
             expect(manager.isInitialized, isTrue);
           });
@@ -54,9 +56,10 @@ void main() {
             final manager = AppStateManager();
 
             final future = manager.initializeApp();
-            async.flushMicrotasks();
-            async.elapse(const Duration(milliseconds: 2000));
-            future.then((_) {});
+            async
+              ..flushMicrotasks()
+              ..elapse(const Duration(milliseconds: 2000));
+            unawaited(future);
 
             expect(manager.isLoggedIn, isTrue);
             expect(manager.isOnboardingComplete, isTrue);
@@ -98,9 +101,7 @@ void main() {
         'selects the given tab',
         tags: [TestTag.unit],
         () {
-          final manager = AppStateManager();
-
-          manager.goToTab(FooderlichTab.toBuy);
+          final manager = AppStateManager()..goToTab(FooderlichTab.toBuy);
 
           expect(manager.selectedTab, equals(FooderlichTab.toBuy));
         },
@@ -112,9 +113,7 @@ void main() {
         'selects the recipes tab',
         tags: [TestTag.unit],
         () {
-          final manager = AppStateManager();
-
-          manager.goToRecipesTab();
+          final manager = AppStateManager()..goToRecipesTab();
 
           expect(manager.selectedTab, equals(FooderlichTab.recipes));
         },
@@ -127,12 +126,11 @@ void main() {
         tags: [TestTag.unit],
         () {
           fakeAsync((async) {
-            final manager = AppStateManager();
+            final manager = AppStateManager()..goToTab(FooderlichTab.toBuy);
 
-            manager.goToTab(FooderlichTab.toBuy);
             final future = manager.logOut();
             async.elapse(const Duration(milliseconds: 2000));
-            future.then((_) {});
+            unawaited(future);
 
             expect(manager.selectedTab, equals(FooderlichTab.explore));
             expect(manager.isLoggedIn, isFalse);

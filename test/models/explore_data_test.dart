@@ -10,9 +10,21 @@ void main() {
       tags: [TestTag.unit],
       () {
         final recipes = <ExploreRecipe>[
-          ExploreRecipe(id: '1', cardType: 'card1', title: 'Bread'),
+          ExploreRecipe(
+            id: '1',
+            cardType: 'card1',
+            title: 'Bread',
+          ),
         ];
-        final posts = <Post>[Post(id: '1', profileImageUrl: '', comment: '', foodPictureUrl: '', timestamp: '')];
+        final posts = <Post>[
+          Post(
+            id: '1',
+            profileImageUrl: '',
+            comment: '',
+            foodPictureUrl: '',
+            timestamp: '',
+          ),
+        ];
 
         final data = ExploreData(recipes, posts);
 
