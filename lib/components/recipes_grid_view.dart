@@ -4,9 +4,9 @@ import 'package:fooderlich/models/models.dart';
 
 class RecipesGridView extends StatelessWidget {
   const RecipesGridView({
-    Key? key,
+    super.key,
     required this.recipes,
-  }) : super(key: key);
+  });
 
   final List<SimpleRecipe> recipes;
 

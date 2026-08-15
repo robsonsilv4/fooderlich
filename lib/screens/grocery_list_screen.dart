@@ -5,9 +5,9 @@ import '../models/models.dart';
 
 class GroceryListScreen extends StatelessWidget {
   const GroceryListScreen({
-    Key? key,
+    super.key,
     required this.manager,
-  }) : super(key: key);
+  });
 
   final GroceryManager manager;
 

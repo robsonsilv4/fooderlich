@@ -6,9 +6,9 @@ import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
-    Key? key,
+    super.key,
     required this.currentTab,
-  }) : super(key: key);
+  });
 
   static MaterialPage page(int currentTab) {
     return MaterialPage(
@@ -23,7 +23,7 @@ class HomeScreen extends StatefulWidget {
   final int currentTab;
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {

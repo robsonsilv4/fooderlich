@@ -5,9 +5,9 @@ import 'circle_image.dart';
 
 class FriendPostTile extends StatelessWidget {
   const FriendPostTile({
-    Key? key,
+    super.key,
     required this.post,
-  }) : super(key: key);
+  });
 
   final Post post;
 

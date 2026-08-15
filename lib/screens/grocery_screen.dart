@@ -5,7 +5,7 @@ import '../models/models.dart';
 import 'screens.dart';
 
 class GroceryScreen extends StatelessWidget {
-  const GroceryScreen({Key? key}) : super(key: key);
+  const GroceryScreen({super.key});
 
   Widget _buildGroceryScreen() {
     return Consumer<GroceryManager>(

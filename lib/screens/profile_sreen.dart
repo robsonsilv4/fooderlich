@@ -8,9 +8,9 @@ import '../models/models.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
-    Key? key,
+    super.key,
     required this.user,
-  }) : super(key: key);
+  });
 
   static MaterialPage page(User user) {
     return MaterialPage(

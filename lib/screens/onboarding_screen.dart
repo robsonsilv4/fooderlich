@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../models/models.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
   static MaterialPage page() => MaterialPage(
         name: FooderlichPages.onboardingPath,

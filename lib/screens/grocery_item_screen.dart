@@ -9,13 +9,12 @@ import '../models/models.dart';
 
 class GroceryItemScreen extends StatefulWidget {
   const GroceryItemScreen({
-    Key? key,
+    super.key,
     required this.onCreate,
     required this.onUpdate,
     this.originalItem,
     this.index = -1,
-  })  : isUpdating = (originalItem != null),
-        super(key: key);
+  })  : isUpdating = (originalItem != null);
 
   final Function(GroceryItem) onCreate;
   final Function(GroceryItem, int) onUpdate;
@@ -42,7 +41,7 @@ class GroceryItemScreen extends StatefulWidget {
   }
 
   @override
-  _GroceryItemScreenState createState() => _GroceryItemScreenState();
+  State<GroceryItemScreen> createState() => _GroceryItemScreenState();
 }
 
 class _GroceryItemScreenState extends State<GroceryItemScreen> {

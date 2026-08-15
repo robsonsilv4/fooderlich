@@ -5,7 +5,7 @@ import '../fooderlich_theme.dart';
 import 'author_card.dart';
 
 class CardTwo extends StatelessWidget {
-  const CardTwo({Key? key, required this.recipe}) : super(key: key);
+  const CardTwo({super.key, required this.recipe});
 
   final ExploreRecipe recipe;
 

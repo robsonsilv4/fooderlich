@@ -5,11 +5,11 @@ import 'circle_image.dart';
 
 class AuthorCard extends StatefulWidget {
   const AuthorCard({
-    Key? key,
+    super.key,
     required this.authorName,
     required this.title,
     this.imageProvider,
-  }) : super(key: key);
+  });
 
   final String authorName;
   final String title;

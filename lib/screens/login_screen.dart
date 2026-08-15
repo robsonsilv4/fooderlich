@@ -6,9 +6,9 @@ import '../models/models.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
-    Key? key,
+    super.key,
     this.username,
-  }) : super(key: key);
+  });
 
   static MaterialPage route() => MaterialPage(
         name: FooderlichPages.loginPath,

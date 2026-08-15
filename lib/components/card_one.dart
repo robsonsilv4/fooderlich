@@ -5,9 +5,9 @@ import '../models/models.dart';
 
 class CardOne extends StatelessWidget {
   const CardOne({
-    Key? key,
+    super.key,
     required this.recipe,
-  }) : super(key: key);
+  });
 
   final ExploreRecipe recipe;
 

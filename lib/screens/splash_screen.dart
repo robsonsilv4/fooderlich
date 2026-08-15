@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/models.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   static MaterialPage page() => MaterialPage(
         name: FooderlichPages.splashPath,
@@ -13,7 +13,7 @@ class SplashScreen extends StatefulWidget {
       );
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {

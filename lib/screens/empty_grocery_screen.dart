@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
-  const EmptyGroceryScreen({Key? key}) : super(key: key);
+  const EmptyGroceryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

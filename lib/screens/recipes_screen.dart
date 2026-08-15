@@ -5,7 +5,7 @@ import '../components/components.dart';
 import '../models/models.dart';
 
 class RecipesScreen extends StatelessWidget {
-  RecipesScreen({Key? key}) : super(key: key);
+  RecipesScreen({super.key});
 
   final _mockFoodlerlichService = MockFooderlichService();
 

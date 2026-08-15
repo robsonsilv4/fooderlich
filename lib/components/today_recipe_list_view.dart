@@ -5,9 +5,9 @@ import 'components.dart';
 
 class TodayRecipeListView extends StatelessWidget {
   const TodayRecipeListView({
-    Key? key,
+    super.key,
     required this.recipes,
-  }) : super(key: key);
+  });
 
   final List<ExploreRecipe> recipes;
 

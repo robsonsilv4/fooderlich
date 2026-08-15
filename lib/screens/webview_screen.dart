@@ -6,7 +6,7 @@ import 'package:fooderlich/models/models.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
-  const WebViewScreen({Key? key}) : super(key: key);
+  const WebViewScreen({super.key});
 
   static MaterialPage page() => MaterialPage(
         name: FooderlichPages.raywenderlich,
