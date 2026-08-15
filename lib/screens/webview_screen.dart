@@ -26,14 +26,13 @@ class _WebViewScreenState extends State<WebViewScreen> {
   @override
   void initState() {
     super.initState();
-    unawaited(_initController());
+    _controller = WebViewController();
+    unawaited(_configureController());
   }
 
-  Future<void> _initController() async {
-    final controller = WebViewController();
-    await controller.setJavaScriptMode(JavaScriptMode.unrestricted);
-    await controller.loadRequest(Uri.parse('https://www.raywenderlich.com/'));
-    _controller = controller;
+  Future<void> _configureController() async {
+    await _controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    await _controller.loadRequest(Uri.parse('https://www.raywenderlich.com/'));
   }
 
   @override
