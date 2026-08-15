@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fooderlich/models/models.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 extension PumpApp on WidgetTester {
@@ -10,6 +11,7 @@ extension PumpApp on WidgetTester {
     ProfileManager? profileManager,
     GroceryManager? groceryManager,
   }) {
+    GoogleFonts.config.allowRuntimeFetching = false;
     return pumpWidget(
       MultiProvider(
         providers: [
@@ -23,7 +25,9 @@ extension PumpApp on WidgetTester {
             create: (_) => groceryManager ?? GroceryManager(),
           ),
         ],
-        child: MaterialApp(home: widget),
+        child: MaterialApp(
+          home: Scaffold(body: widget),
+        ),
       ),
     );
   }
