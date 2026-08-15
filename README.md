@@ -17,6 +17,14 @@ flutter run
 The app is an offline demo: recipes and posts come from a mock service, and
 preferences persist locally via `shared_preferences`.
 
+## Testing
+
+```sh
+flutter test --coverage
+```
+
+Runs the full suite (models, navigation, components and screens) with ~99% line coverage.
+
 ## Project layout
 
 - `lib/models/` — state managers (`AppStateManager`, `GroceryManager`,
@@ -27,9 +35,15 @@ preferences persist locally via `shared_preferences`.
   (deep-linking aware)
 - `lib/api/` — mock data source
 
+## License
+
+MIT — see [LICENSE](LICENSE).
+
 ## Notes
 
 - Educational project from the *Flutter Apprentice* book (Kodeco). Kept as an
   archive of the course work, updated to a modern Flutter toolchain in 2026.
 - Web view and deep links are wired for the raywenderlich.com flow used in the
   book.
+- The test suite was added after the course and is not part of the book's
+  material.
