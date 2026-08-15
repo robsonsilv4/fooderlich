@@ -61,7 +61,9 @@ class ExploreRecipe {
       message: json['message'] as String? ?? '',
       authorName: json['authorName'] as String? ?? '',
       role: json['role'] as String? ?? '',
-      profileImage: json['authorImage'] as String? ?? '',
+      profileImage: (json['authorImage'] as String?) ??
+          (json['profileImage'] as String?) ??
+          '',
       durationInMinutes: json['durationInMinutes'] as int? ?? 0,
       dietType: json['dietType'] as String? ?? '',
       calories: json['calories'] as int? ?? 0,
