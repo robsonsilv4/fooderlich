@@ -1,0 +1,9 @@
+tags:
+  unit:
+  widget:
+
+timeout: 2x
+
+platforms: [vm]
+
+test_randomize_ordering_seed: random
