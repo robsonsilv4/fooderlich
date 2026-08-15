@@ -65,7 +65,9 @@ void main() {
 
         expect(screen.rwColor, equals(const Color.fromRGBO(64, 143, 77, 1)));
         expect(
-            screen.focusedStyle, equals(const TextStyle(color: Colors.green)),);
+          screen.focusedStyle,
+          equals(const TextStyle(color: Colors.green)),
+        );
         expect(
           screen.unfocusedStyle,
           equals(const TextStyle(color: Colors.grey)),

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fooderlich/models/models.dart';
 
@@ -7,20 +6,6 @@ import '../helpers/helpers.dart';
 void main() {
   group(GroceryManager, () {
     late GroceryManager manager;
-
-    final date = DateTime(2026, 1, 15);
-
-    GroceryItem buildItem(String id, {bool isComplete = false}) {
-      return GroceryItem(
-        id: id,
-        name: 'Item $id',
-        importance: Importance.medium,
-        color: const Color(0xFF000000),
-        quantity: 1,
-        date: date,
-        isComplete: isComplete,
-      );
-    }
 
     setUp(() {
       manager = GroceryManager();
@@ -54,7 +39,7 @@ void main() {
         'adds the item and clears the creating flag',
         tags: [TestTag.unit],
         () {
-          final item = buildItem('1');
+          final item = buildGroceryItem();
           manager
             ..createNewItem()
             ..addItem(item);
@@ -72,8 +57,8 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1'))
-            ..addItem(buildItem('2'))
+            ..addItem(buildGroceryItem())
+            ..addItem(buildGroceryItem(id: '2'))
             ..groceryItemTapped(1);
 
           expect(manager.selectedIndex, equals(1));
@@ -88,8 +73,8 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1'))
-            ..addItem(buildItem('2'))
+            ..addItem(buildGroceryItem())
+            ..addItem(buildGroceryItem(id: '2'))
             ..setSelectedGroceryItem('1');
 
           expect(manager.selectedIndex, equals(0));
@@ -102,7 +87,7 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1'))
+            ..addItem(buildGroceryItem())
             ..setSelectedGroceryItem('nope');
 
           expect(manager.selectedIndex, equals(-1));
@@ -117,8 +102,8 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1'))
-            ..addItem(buildItem('2'))
+            ..addItem(buildGroceryItem())
+            ..addItem(buildGroceryItem(id: '2'))
             ..deleteItem(0);
 
           expect(manager.groceryItems, hasLength(1));
@@ -133,10 +118,10 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1'))
+            ..addItem(buildGroceryItem())
             ..groceryItemTapped(0);
 
-          final updated = buildItem('1');
+          final updated = buildGroceryItem();
           manager.updateItem(updated, 0);
 
           expect(manager.groceryItems.first, same(updated));
@@ -152,7 +137,7 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1'))
+            ..addItem(buildGroceryItem())
             ..completeItem(0, change: true);
 
           expect(manager.groceryItems.first.isComplete, isTrue);
@@ -164,7 +149,7 @@ void main() {
         tags: [TestTag.unit],
         () {
           manager
-            ..addItem(buildItem('1', isComplete: true))
+            ..addItem(buildGroceryItem(isComplete: true))
             ..completeItem(0, change: false);
 
           expect(manager.groceryItems.first.isComplete, isFalse);

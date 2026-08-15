@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fooderlich/components/friend_post_list_view.dart';
+import 'package:fooderlich/components/friend_post_tile.dart';
 
 import '../helpers/helpers.dart';
 
@@ -25,7 +26,7 @@ void main() {
         await tester.pumpApp(const FriendPostListView(friendPosts: []));
 
         expect(find.text('Social Chefs 👩‍🍳'), findsOneWidget);
-        expect(find.byType(FriendPostListView), findsOneWidget);
+        expect(find.byType(FriendPostTile), findsNothing);
       },
     );
   });

@@ -23,7 +23,7 @@ void main() {
 
     group('darkMode', () {
       test(
-        'stores the new value',
+        'stores the dark mode flag',
         tags: [TestTag.unit],
         () {
           manager.darkMode = true;
@@ -35,7 +35,7 @@ void main() {
 
     group('tapOnRayderlich', () {
       test(
-        'stores the selected value',
+        'sets the raywenderlich flag when selected',
         tags: [TestTag.unit],
         () {
           manager.tapOnRayderlich(selected: true);
@@ -47,7 +47,7 @@ void main() {
 
     group('tapOnProfile', () {
       test(
-        'stores the selected value',
+        'sets the profile selection when tapped',
         tags: [TestTag.unit],
         () {
           manager.tapOnProfile(selected: true);

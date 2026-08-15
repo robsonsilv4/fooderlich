@@ -46,14 +46,10 @@ void main() {
         tester.view.devicePixelRatio = 1;
         addTearDown(tester.view.reset);
 
-        final recipe = ExploreRecipe(
-          id: '1',
+        final recipe = buildExploreRecipe(
           cardType: RecipeCardType.card2,
-          title: 'Bread',
-          backgroundImage: 'assets/magazine_pics/card_bread.jpg',
           authorName: 'Ray',
           role: 'Founder',
-          profileImage: 'assets/profile_pics/person_ray.jpeg',
         );
 
         await tester.pumpApp(

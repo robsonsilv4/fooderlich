@@ -402,15 +402,15 @@ void main() {
 
     group('dispose', () {
       test(
-        'removes all listeners',
+        'removes all listeners without throwing',
         tags: [TestTag.unit],
         () {
           final router = buildRouter();
+          appStateManager.addListener(router.notifyListeners);
 
-          // dispose() is a terminal call; a cascade would be pointless here.
-          // ignore: cascade_invocations
           router.dispose();
 
+          appStateManager.notifyListeners();
           expect(appStateManager, isNotNull);
         },
       );

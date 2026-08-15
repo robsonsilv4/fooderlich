@@ -3,6 +3,8 @@ import 'package:fooderlich/models/models.dart';
 
 ExploreRecipe buildExploreRecipe({
   String cardType = RecipeCardType.card1,
+  String authorName = 'Ray Wenderlich',
+  String role = 'Founder of Raywenderlich',
 }) {
   return ExploreRecipe(
     id: '1',
@@ -11,8 +13,8 @@ ExploreRecipe buildExploreRecipe({
     subtitle: "Editor's Choice",
     backgroundImage: 'assets/magazine_pics/card_bread.jpg',
     message: 'Learn to make the perfect bread.',
-    authorName: 'Ray Wenderlich',
-    role: 'Founder of Raywenderlich',
+    authorName: authorName,
+    role: role,
     profileImage: 'assets/profile_pics/person_ray.jpeg',
     tags: const ['Carbs', 'Dough', 'Crunchy', 'Yummy'],
   );
@@ -39,13 +41,19 @@ Post buildPost() {
   );
 }
 
-GroceryItem buildGroceryItem({Importance importance = Importance.medium}) {
+GroceryItem buildGroceryItem({
+  String id = '1',
+  String name = 'Milk',
+  Importance importance = Importance.medium,
+  bool isComplete = false,
+}) {
   return GroceryItem(
-    id: '1',
-    name: 'Milk',
+    id: id,
+    name: name,
     importance: importance,
     color: const Color(0xFF42A5F5),
     quantity: 2,
     date: DateTime(2026, 1, 15),
+    isComplete: isComplete,
   );
 }
