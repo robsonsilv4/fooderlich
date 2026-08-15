@@ -98,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
           title: const Text('View raywenderlich.com'),
           onTap: () async {
             if (kIsWeb) {
-              await launch('https://www.raywenderlich.com/');
+              await launchUrl(Uri.parse('https://www.raywenderlich.com/'));
             } else {
               context.read<ProfileManager>().tapOnRayderlich(true);
             }
