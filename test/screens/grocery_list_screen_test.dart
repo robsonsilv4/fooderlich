@@ -40,5 +40,33 @@ void main() {
         expect(find.text('Milk dismissed'), findsOneWidget);
       },
     );
+
+    testWidgets(
+      'selects an item when it is tapped',
+      tags: [TestTag.widget],
+      (tester) async {
+        manager.addItem(buildGroceryItem());
+        await tester.pumpApp(GroceryListScreen(manager: manager));
+
+        await tester.tap(find.text('Milk'));
+        await tester.pump();
+
+        expect(manager.selectedIndex, equals(0));
+      },
+    );
+
+    testWidgets(
+      'completes an item when the checkbox is toggled',
+      tags: [TestTag.widget],
+      (tester) async {
+        manager.addItem(buildGroceryItem());
+        await tester.pumpApp(GroceryListScreen(manager: manager));
+
+        await tester.tap(find.byType(Checkbox));
+        await tester.pump();
+
+        expect(manager.groceryItems.first.isComplete, isTrue);
+      },
+    );
   });
 }

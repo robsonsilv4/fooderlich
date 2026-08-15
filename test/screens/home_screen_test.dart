@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fooderlich/models/models.dart';
 import 'package:fooderlich/screens/home_screen.dart';
@@ -53,6 +54,26 @@ void main() {
         await tester.pump();
 
         expect(appStateManager.selectedTab, equals(FooderlichTab.recipes));
+      },
+    );
+
+    testWidgets(
+      'opens the profile when the profile button is tapped',
+      tags: [TestTag.widget],
+      (tester) async {
+        final profileManager = ProfileManager();
+
+        await tester.pumpApp(
+          const HomeScreen(currentTab: 0),
+          profileManager: profileManager,
+        );
+        await tester.pump(const Duration(milliseconds: 1100));
+        await tester.pump(const Duration(milliseconds: 1100));
+
+        await tester.tap(find.byType(CircleAvatar).last);
+        await tester.pump();
+
+        expect(profileManager.didSelectUser, isTrue);
       },
     );
   });

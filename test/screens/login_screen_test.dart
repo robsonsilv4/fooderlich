@@ -56,5 +56,21 @@ void main() {
         expect(appStateManager.isLoggedIn, isTrue);
       },
     );
+
+    test(
+      'exposes the brand and text styles',
+      tags: [TestTag.unit],
+      () {
+        const screen = LoginScreen();
+
+        expect(screen.rwColor, equals(const Color.fromRGBO(64, 143, 77, 1)));
+        expect(
+            screen.focusedStyle, equals(const TextStyle(color: Colors.green)),);
+        expect(
+          screen.unfocusedStyle,
+          equals(const TextStyle(color: Colors.grey)),
+        );
+      },
+    );
   });
 }

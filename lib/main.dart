@@ -4,12 +4,23 @@ import 'package:fooderlich/models/models.dart';
 import 'package:fooderlich/navigation/navigation.dart';
 import 'package:provider/provider.dart';
 
+// coverage:ignore-start
 void main() {
   runApp(const FooderlishApp());
 }
+// coverage:ignore-end
 
 class FooderlishApp extends StatefulWidget {
-  const FooderlishApp({super.key});
+  const FooderlishApp({
+    super.key,
+    this.appStateManager,
+    this.profileManager,
+    this.groceryManager,
+  });
+
+  final AppStateManager? appStateManager;
+  final ProfileManager? profileManager;
+  final GroceryManager? groceryManager;
 
   @override
   State<FooderlishApp> createState() => _FooderlishAppState();
@@ -18,12 +29,15 @@ class FooderlishApp extends StatefulWidget {
 class _FooderlishAppState extends State<FooderlishApp> {
   late AppRouter _appRouter;
   final _routeParser = AppRouteParser();
-  final _appStateManager = AppStateManager();
-  final _profileManager = ProfileManager();
-  final _groceryManager = GroceryManager();
+  late final AppStateManager _appStateManager;
+  late final ProfileManager _profileManager;
+  late final GroceryManager _groceryManager;
 
   @override
   void initState() {
+    _appStateManager = widget.appStateManager ?? AppStateManager();
+    _profileManager = widget.profileManager ?? ProfileManager();
+    _groceryManager = widget.groceryManager ?? GroceryManager();
     _appRouter = AppRouter(
       appStateManager: _appStateManager,
       profileManager: _profileManager,

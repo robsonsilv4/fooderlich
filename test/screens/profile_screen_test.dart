@@ -89,5 +89,28 @@ void main() {
         expect(profileManager.didSelectUser, isFalse);
       },
     );
+
+    testWidgets(
+      'logs out and clears the profile selection',
+      tags: [TestTag.widget],
+      (tester) async {
+        final profileManager = ProfileManager()..tapOnProfile(selected: true);
+        final appStateManager = AppStateManager();
+        final user = buildUser();
+
+        await tester.pumpApp(
+          ProfileScreen(user: user),
+          profileManager: profileManager,
+          appStateManager: appStateManager,
+        );
+
+        await tester.tap(find.text('Log out'));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 2100));
+
+        expect(profileManager.didSelectUser, isFalse);
+        expect(appStateManager.isLoggedIn, isFalse);
+      },
+    );
   });
 }

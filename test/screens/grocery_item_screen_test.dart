@@ -99,6 +99,133 @@ void main() {
     );
 
     testWidgets(
+      'selects low importance',
+      tags: [TestTag.widget],
+      (tester) async {
+        GroceryItem? created;
+
+        await tester.pumpApp(
+          GroceryItemScreen(
+            onCreate: (item) => created = item,
+            onUpdate: (_, __) {},
+          ),
+        );
+
+        await tester.tap(find.text('low'));
+        await tester.tap(find.byIcon(Icons.check));
+        await tester.pump();
+
+        expect(created!.importance, equals(Importance.low));
+      },
+    );
+
+    testWidgets(
+      'selects medium importance',
+      tags: [TestTag.widget],
+      (tester) async {
+        GroceryItem? created;
+
+        await tester.pumpApp(
+          GroceryItemScreen(
+            onCreate: (item) => created = item,
+            onUpdate: (_, __) {},
+          ),
+        );
+
+        await tester.tap(find.text('medium'));
+        await tester.tap(find.byIcon(Icons.check));
+        await tester.pump();
+
+        expect(created!.importance, equals(Importance.medium));
+      },
+    );
+
+    testWidgets(
+      'updates the due date from the date picker',
+      tags: [TestTag.widget],
+      (tester) async {
+        await tester.pumpApp(
+          GroceryItemScreen(
+            onCreate: (_) {},
+            onUpdate: (_, __) {},
+          ),
+        );
+
+        final dateSelect = find.descendant(
+          of: find.byType(Row),
+          matching: find.text('Select'),
+        );
+        await tester.tap(dateSelect.first);
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text('OK'));
+        await tester.pumpAndSettle();
+      },
+    );
+
+    testWidgets(
+      'updates the time from the time picker',
+      tags: [TestTag.widget],
+      (tester) async {
+        await tester.pumpApp(
+          GroceryItemScreen(
+            onCreate: (_) {},
+            onUpdate: (_, __) {},
+          ),
+        );
+
+        final timeSelect = find.descendant(
+          of: find.byType(Row),
+          matching: find.text('Select'),
+        );
+        await tester.tap(timeSelect.at(1));
+        await tester.pumpAndSettle();
+
+        await tester.tap(find.text('OK'));
+        await tester.pumpAndSettle();
+      },
+    );
+
+    testWidgets(
+      'selects a color from the color picker',
+      tags: [TestTag.widget],
+      (tester) async {
+        tester.view.physicalSize = const Size(800, 1600);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.reset);
+
+        GroceryItem? created;
+
+        await tester.pumpApp(
+          GroceryItemScreen(
+            onCreate: (item) => created = item,
+            onUpdate: (_, __) {},
+          ),
+        );
+
+        final colorSelect = find.descendant(
+          of: find.byType(Row),
+          matching: find.text('Select'),
+        );
+        await tester.tap(colorSelect.last);
+        await tester.pumpAndSettle();
+
+        final colorBlock = find.descendant(
+          of: find.byType(AlertDialog),
+          matching: find.byType(InkWell),
+        );
+        await tester.tap(colorBlock.first);
+        await tester.pump();
+        await tester.tap(find.text('Save'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.byIcon(Icons.check));
+        await tester.pump();
+
+        expect(created, isNotNull);
+      },
+    );
+
+    testWidgets(
       'changes quantity when the slider is dragged',
       tags: [TestTag.widget],
       (tester) async {

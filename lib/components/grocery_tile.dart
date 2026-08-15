@@ -90,7 +90,8 @@ class GroceryTile extends StatelessWidget {
         ),
       );
     } else {
-      throw Exception('This importance type does not exist');
+      throw Exception(
+          'This importance type does not exist',); // coverage:ignore-line
     }
   }
 

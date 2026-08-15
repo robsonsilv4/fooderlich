@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fooderlich/models/models.dart';
 import 'package:fooderlich/screens/empty_grocery_screen.dart';
+import 'package:fooderlich/screens/grocery_list_screen.dart';
 import 'package:fooderlich/screens/grocery_screen.dart';
 
 import '../helpers/helpers.dart';
@@ -34,6 +35,22 @@ void main() {
         await tester.pump();
 
         expect(groceryManager.isCreatingNewItem, isTrue);
+      },
+    );
+
+    testWidgets(
+      'shows the list when there are grocery items',
+      tags: [TestTag.widget],
+      (tester) async {
+        final groceryManager = GroceryManager()..addItem(buildGroceryItem());
+
+        await tester.pumpApp(
+          const GroceryScreen(),
+          groceryManager: groceryManager,
+        );
+
+        expect(find.byType(GroceryListScreen), findsOneWidget);
+        expect(find.byType(EmptyGroceryScreen), findsNothing);
       },
     );
   });

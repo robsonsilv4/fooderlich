@@ -33,5 +33,25 @@ void main() {
         expect(find.byType(CircularProgressIndicator), findsNothing);
       },
     );
+
+    testWidgets(
+      'handles scrolling to the top and bottom',
+      tags: [TestTag.widget],
+      (tester) async {
+        tester.view.physicalSize = const Size(600, 1200);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.reset);
+
+        await tester.pumpApp(const ExploreScreen());
+        await tester.pump(const Duration(milliseconds: 1100));
+        await tester.pump(const Duration(milliseconds: 1100));
+        await tester.pump(const Duration(milliseconds: 100));
+
+        await tester.drag(find.byType(ListView).first, const Offset(0, -2000));
+        await tester.pumpAndSettle();
+        await tester.drag(find.byType(ListView).first, const Offset(0, 2000));
+        await tester.pumpAndSettle();
+      },
+    );
   });
 }
