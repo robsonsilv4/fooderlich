@@ -1,16 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-
+import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
-
-import '../models/models.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({
-    Key? key,
+    super.key,
     this.username,
-  }) : super(key: key);
+  });
 
-  static MaterialPage route() => MaterialPage(
+  static MaterialPage<void> route() => MaterialPage(
         name: FooderlichPages.loginPath,
         key: ValueKey(FooderlichPages.loginPath),
         child: const LoginScreen(),
@@ -18,9 +18,9 @@ class LoginScreen extends StatelessWidget {
 
   final String? username;
 
-  final rwColor = const Color.fromRGBO(64, 143, 77, 1);
-  final focusedStyle = const TextStyle(color: Colors.green);
-  final unfocusedStyle = const TextStyle(color: Colors.grey);
+  Color get rwColor => const Color.fromRGBO(64, 143, 77, 1);
+  TextStyle get focusedStyle => const TextStyle(color: Colors.green);
+  TextStyle get unfocusedStyle => const TextStyle(color: Colors.grey);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,8 @@ class LoginScreen extends StatelessWidget {
                         height: 200,
                         child: Image(
                           image: AssetImage(
-                              'assets/fooderlich_assets/rw_logo.png'),
+                            'assets/fooderlich_assets/rw_logo.png',
+                          ),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -67,7 +68,6 @@ class LoginScreen extends StatelessWidget {
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.green,
-            width: 1,
           ),
         ),
         focusedBorder: const OutlineInputBorder(
@@ -88,7 +88,9 @@ class LoginScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         onPressed: () {
-          context.read<AppStateManager>().login('username', 'password');
+          unawaited(
+            context.read<AppStateManager>().login('username', 'password'),
+          );
         },
         child: const Text(
           'Login',

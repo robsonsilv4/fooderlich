@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
-import '../models/models.dart';
-import 'components.dart';
+import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 
 class FriendPostListView extends StatelessWidget {
   const FriendPostListView({
-    Key? key,
     required this.friendPosts,
-  }) : super(key: key);
+    super.key,
+  });
 
   final List<Post> friendPosts;
 
@@ -22,7 +21,7 @@ class FriendPostListView extends StatelessWidget {
         children: [
           Text(
             'Social Chefs 👩‍🍳',
-            style: Theme.of(context).textTheme.headline1,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
           const SizedBox(height: 16),
           ListView.separated(

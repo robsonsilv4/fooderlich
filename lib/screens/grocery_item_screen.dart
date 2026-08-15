@@ -1,33 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
-import '../models/models.dart';
-
 class GroceryItemScreen extends StatefulWidget {
   const GroceryItemScreen({
-    Key? key,
     required this.onCreate,
     required this.onUpdate,
+    super.key,
     this.originalItem,
     this.index = -1,
-  })  : isUpdating = (originalItem != null),
-        super(key: key);
+  }) : isUpdating = (originalItem != null);
 
-  final Function(GroceryItem) onCreate;
-  final Function(GroceryItem, int) onUpdate;
+  final ValueChanged<GroceryItem> onCreate;
+  final void Function(GroceryItem item, int index) onUpdate;
   final GroceryItem? originalItem;
   final bool isUpdating;
   final int index;
 
-  static MaterialPage page({
+  static MaterialPage<void> page({
+    required ValueChanged<GroceryItem> onCreate,
+    required void Function(GroceryItem item, int index) onUpdate,
     GroceryItem? item,
     int index = -1,
-    required Function(GroceryItem) onCreate,
-    required Function(GroceryItem, int) onUpdate,
   }) {
     return MaterialPage(
       name: FooderlichPages.groceryItemDetails,
@@ -42,7 +42,7 @@ class GroceryItemScreen extends StatefulWidget {
   }
 
   @override
-  _GroceryItemScreenState createState() => _GroceryItemScreenState();
+  State<GroceryItemScreen> createState() => _GroceryItemScreenState();
 }
 
 class _GroceryItemScreenState extends State<GroceryItemScreen> {
@@ -232,7 +232,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               ),
             ),
           ],
-        )
+        ),
       ],
     );
   }
@@ -315,29 +315,31 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             Text(
               'Color',
               style: GoogleFonts.lato(fontSize: 28),
-            )
+            ),
           ],
         ),
         TextButton(
           onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  content: BlockPicker(
-                    pickerColor: Colors.white,
-                    onColorChanged: (color) => setState(
-                      () => _currentColor = color,
+            unawaited(
+              showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: BlockPicker(
+                      pickerColor: Colors.white,
+                      onColorChanged: (color) => setState(
+                        () => _currentColor = color,
+                      ),
                     ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Save'),
-                    ),
-                  ],
-                );
-              },
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Save'),
+                      ),
+                    ],
+                  );
+                },
+              ),
             );
           },
           child: const Text('Select'),
@@ -360,18 +362,17 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             ),
             const SizedBox(width: 16),
             Text(
-              _currentSliderValue.toInt().toString(),
+              _currentSliderValue.toString(),
               style: GoogleFonts.lato(fontSize: 18),
             ),
           ],
         ),
         Slider(
-          min: 0,
           max: 100,
           divisions: 100,
           value: _currentSliderValue.toDouble(),
-          label: _currentSliderValue.toInt().toString(),
-          inactiveColor: _currentColor.withOpacity(0.5),
+          label: _currentSliderValue.toString(),
+          inactiveColor: _currentColor.withValues(alpha: 0.5),
           activeColor: _currentColor,
           onChanged: (value) => setState(
             () => _currentSliderValue = value.toInt(),

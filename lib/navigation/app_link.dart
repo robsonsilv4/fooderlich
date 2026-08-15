@@ -5,21 +5,9 @@ class AppLink {
     this.itemId,
   });
 
-  static const kHomePath = '/home';
-  static const kOnboardingPath = '/onboarding';
-  static const kLoginPath = '/login';
-  static const kProfilePath = '/profile';
-  static const kItemPath = '/item';
-  static const kTabParam = 'tab';
-  static const kIdParam = 'id';
-
-  String? location;
-  int? currentTab;
-  String? itemId;
-
-  static AppLink fromLocation(String? location) {
-    location = Uri.decodeFull(location ?? '');
-    final uri = Uri.parse(location);
+  factory AppLink.fromLocation(String? location) {
+    final decoded = Uri.decodeFull(location ?? '');
+    final uri = Uri.parse(decoded);
 
     final params = uri.queryParameters;
     final currentTab = int.tryParse(params[AppLink.kTabParam] ?? '');
@@ -31,6 +19,18 @@ class AppLink {
       itemId: itemId,
     );
   }
+
+  static const kHomePath = '/home';
+  static const kOnboardingPath = '/onboarding';
+  static const kLoginPath = '/login';
+  static const kProfilePath = '/profile';
+  static const kItemPath = '/item';
+  static const kTabParam = 'tab';
+  static const kIdParam = 'id';
+
+  String? location;
+  int? currentTab;
+  String? itemId;
 
   String toLocation() {
     String addKeyValuePair({
@@ -47,14 +47,14 @@ class AppLink {
       case kProfilePath:
         return kProfilePath;
       case kItemPath:
-        String loc = '$kItemPath?';
+        var loc = '$kItemPath?';
         loc += addKeyValuePair(
           key: kIdParam,
           value: itemId,
         );
         return Uri.encodeFull(loc);
       default:
-        String loc = '$kHomePath?';
+        var loc = '$kHomePath?';
         loc += addKeyValuePair(
           key: kTabParam,
           value: currentTab.toString(),

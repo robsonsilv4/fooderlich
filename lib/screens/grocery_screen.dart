@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/screens/screens.dart';
 import 'package:provider/provider.dart';
 
-import '../models/models.dart';
-import 'screens.dart';
-
 class GroceryScreen extends StatelessWidget {
-  const GroceryScreen({Key? key}) : super(key: key);
+  const GroceryScreen({super.key});
 
   Widget _buildGroceryScreen() {
     return Consumer<GroceryManager>(

@@ -1,15 +1,12 @@
-import 'package:flutter/widgets.dart';
+import 'dart:async';
 
-import '../models/models.dart';
-import '../screens/screens.dart';
-import 'navigation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/navigation/navigation.dart';
+import 'package:fooderlich/screens/screens.dart';
 
 class AppRouter extends RouterDelegate<AppLink>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  final AppStateManager appStateManager;
-  final ProfileManager profileManager;
-  final GroceryManager groceryManager;
-
   AppRouter({
     required this.appStateManager,
     required this.profileManager,
@@ -19,6 +16,9 @@ class AppRouter extends RouterDelegate<AppLink>
     profileManager.addListener(notifyListeners);
     groceryManager.addListener(notifyListeners);
   }
+  final AppStateManager appStateManager;
+  final ProfileManager profileManager;
+  final GroceryManager groceryManager;
 
   @override
   GlobalKey<NavigatorState> navigatorKey;
@@ -27,7 +27,7 @@ class AppRouter extends RouterDelegate<AppLink>
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      onPopPage: _handlePopPage,
+      onDidRemovePage: _handleDidRemovePage,
       pages: [
         if (!appStateManager.isInitialized) SplashScreen.page(),
         if (appStateManager.isInitialized && !appStateManager.isLoggedIn)
@@ -38,17 +38,15 @@ class AppRouter extends RouterDelegate<AppLink>
           HomeScreen.page(appStateManager.selectedTab),
         if (groceryManager.isCreatingNewItem)
           GroceryItemScreen.page(
-            onCreate: (item) => groceryManager.addItem(item),
-            onUpdate: (item, index) => {},
+            onCreate: groceryManager.addItem,
+            onUpdate: (item, index) {},
           ),
         if (groceryManager.selectedIndex != -1)
           GroceryItemScreen.page(
             item: groceryManager.selectedGroceryItem,
             index: groceryManager.selectedIndex,
             onCreate: (_) {},
-            onUpdate: (item, index) {
-              groceryManager.updateItem(item, index);
-            },
+            onUpdate: groceryManager.updateItem,
           ),
         if (profileManager.didSelectUser)
           ProfileScreen.page(profileManager.getUser),
@@ -67,11 +65,10 @@ class AppRouter extends RouterDelegate<AppLink>
 
   // Web and deep linking
   @override
-  Future<void> setNewRoutePath(configuration) async {
+  Future<void> setNewRoutePath(AppLink configuration) async {
     switch (configuration.location) {
       case AppLink.kProfilePath:
-        profileManager.tapOnProfile(true);
-        break;
+        profileManager.tapOnProfile(selected: true);
       case AppLink.kItemPath:
         final itemId = configuration.itemId;
         if (itemId != null) {
@@ -79,13 +76,11 @@ class AppRouter extends RouterDelegate<AppLink>
         } else {
           groceryManager.createNewItem();
         }
-        profileManager.tapOnProfile(false);
-        break;
+        profileManager.tapOnProfile(selected: false);
       case AppLink.kHomePath:
         appStateManager.goToTab(configuration.currentTab ?? 0);
-        profileManager.tapOnProfile(false);
+        profileManager.tapOnProfile(selected: false);
         groceryManager.groceryItemTapped(-1);
-        break;
       default:
         break;
     }
@@ -114,27 +109,21 @@ class AppRouter extends RouterDelegate<AppLink>
     }
   }
 
-  bool _handlePopPage(Route<dynamic> route, dynamic result) {
-    if (!route.didPop(result)) {
-      return false;
+  void _handleDidRemovePage(Page<Object?> page) {
+    if (page.name == FooderlichPages.onboardingPath) {
+      unawaited(appStateManager.logOut());
     }
 
-    if (route.settings.name == FooderlichPages.onboardingPath) {
-      appStateManager.logOut();
-    }
-
-    if (route.settings.name == FooderlichPages.groceryItemDetails) {
+    if (page.name == FooderlichPages.groceryItemDetails) {
       groceryManager.groceryItemTapped(-1);
     }
 
-    if (route.settings.name == FooderlichPages.profilePath) {
-      profileManager.tapOnProfile(false);
+    if (page.name == FooderlichPages.profilePath) {
+      profileManager.tapOnProfile(selected: false);
     }
 
-    if (route.settings.name == FooderlichPages.raywenderlich) {
-      profileManager.tapOnRayderlich(false);
+    if (page.name == FooderlichPages.raywenderlich) {
+      profileManager.tapOnRayderlich(selected: false);
     }
-
-    return true;
   }
 }

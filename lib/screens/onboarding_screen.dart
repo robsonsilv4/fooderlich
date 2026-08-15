@@ -1,14 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'package:provider/provider.dart';
-
-import '../models/models.dart';
-
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  const OnboardingScreen({super.key});
 
-  static MaterialPage page() => MaterialPage(
+  static MaterialPage<void> page() => MaterialPage(
         name: FooderlichPages.onboardingPath,
         key: ValueKey(FooderlichPages.onboardingPath),
         child: const OnboardingScreen(),
@@ -84,7 +84,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       padding: const EdgeInsets.all(40),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Image(
@@ -120,7 +119,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       children: [
         MaterialButton(
           onPressed: () {
-            context.read<AppStateManager>().completeOnboarding();
+            unawaited(context.read<AppStateManager>().completeOnboarding());
           },
           child: const Text('Skip'),
         ),

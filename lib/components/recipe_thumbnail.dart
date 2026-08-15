@@ -3,9 +3,9 @@ import 'package:fooderlich/models/models.dart';
 
 class RecipeThumbnail extends StatelessWidget {
   const RecipeThumbnail({
-    Key? key,
     required this.recipe,
-  }) : super(key: key);
+    super.key,
+  });
 
   final SimpleRecipe recipe;
 
@@ -29,11 +29,11 @@ class RecipeThumbnail extends StatelessWidget {
           Text(
             recipe.title,
             maxLines: 1,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
             recipe.duration,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ],
       ),

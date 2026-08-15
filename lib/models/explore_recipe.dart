@@ -8,25 +8,6 @@ class RecipeCardType {
 }
 
 class ExploreRecipe {
-  String id;
-  String cardType;
-  String title;
-  String subtitle;
-  String backgroundImage;
-  String backgroundImageSource;
-  String message;
-  String authorName;
-  String role;
-  String profileImage;
-  int durationInMinutes;
-  String dietType;
-  int calories;
-  List<String> tags;
-  String description;
-  String source;
-  List<Ingredients> ingredients;
-  List<Instruction> instructions;
-
   ExploreRecipe({
     required this.id,
     required this.cardType,
@@ -52,37 +33,61 @@ class ExploreRecipe {
     final ingredients = <Ingredients>[];
     final instructions = <Instruction>[];
 
-    if (json['ingredients'] != null) {
-      json['ingredients'].forEach((value) {
-        ingredients.add(Ingredients.fromJson(value));
-      });
+    final jsonIngredients = json['ingredients'] as List<dynamic>?;
+    if (jsonIngredients != null) {
+      for (final value in jsonIngredients) {
+        ingredients.add(
+          Ingredients.fromJson(value as Map<String, dynamic>),
+        );
+      }
     }
 
-    if (json['instructions'] != null) {
-      json['instructions'].forEach((value) {
-        instructions.add(Instruction.fromJson(value));
-      });
+    final jsonInstructions = json['instructions'] as List<dynamic>?;
+    if (jsonInstructions != null) {
+      for (final value in jsonInstructions) {
+        instructions.add(
+          Instruction.fromJson(value as Map<String, dynamic>),
+        );
+      }
     }
 
     return ExploreRecipe(
-      id: json['id'] ?? '',
-      cardType: json['cardType'] ?? '',
-      title: json['title'] ?? '',
-      subtitle: json['subtitle'] ?? '',
-      backgroundImage: json['backgroundImage'] ?? '',
-      backgroundImageSource: json['backgroundImageSource'] ?? '',
-      message: json['message'] ?? '',
-      authorName: json['authorName'] ?? '',
-      role: json['role'] ?? '',
-      profileImage: json['profileImage'] ?? '',
-      durationInMinutes: json['durationInMinutes'] ?? 0,
-      dietType: json['dietType'] ?? '',
-      calories: json['calories'] ?? 0,
-      tags: json['tags'].cast<String>() ?? [],
-      description: json['description'] ?? '',
-      source: json['source'] ?? '',
+      id: json['id'] as String? ?? '',
+      cardType: json['cardType'] as String? ?? '',
+      title: json['title'] as String? ?? '',
+      subtitle: json['subtitle'] as String? ?? '',
+      backgroundImage: json['backgroundImage'] as String? ?? '',
+      backgroundImageSource: json['backgroundImageSource'] as String? ?? '',
+      message: json['message'] as String? ?? '',
+      authorName: json['authorName'] as String? ?? '',
+      role: json['role'] as String? ?? '',
+      profileImage: json['profileImage'] as String? ?? '',
+      durationInMinutes: json['durationInMinutes'] as int? ?? 0,
+      dietType: json['dietType'] as String? ?? '',
+      calories: json['calories'] as int? ?? 0,
+      tags: (json['tags'] as List<dynamic>?)?.cast<String>() ?? [],
+      description: json['description'] as String? ?? '',
+      source: json['source'] as String? ?? '',
       ingredients: ingredients,
       instructions: instructions,
     );
   }
+  String id;
+  String cardType;
+  String title;
+  String subtitle;
+  String backgroundImage;
+  String backgroundImageSource;
+  String message;
+  String authorName;
+  String role;
+  String profileImage;
+  int durationInMinutes;
+  String dietType;
+  int calories;
+  List<String> tags;
+  String description;
+  String source;
+  List<Ingredients> ingredients;
+  List<Instruction> instructions;
 }

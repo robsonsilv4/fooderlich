@@ -4,9 +4,9 @@ import 'package:fooderlich/models/models.dart';
 
 class CardThree extends StatelessWidget {
   const CardThree({
-    Key? key,
     required this.recipe,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ExploreRecipe recipe;
 
@@ -17,9 +17,9 @@ class CardThree extends StatelessWidget {
         final chip = Chip(
           label: Text(
             element,
-            style: FooderlichTheme.darkTextTheme.bodyText1,
+            style: FooderlichTheme.darkTextTheme.bodyLarge,
           ),
-          backgroundColor: Colors.black.withOpacity(0.7),
+          backgroundColor: Colors.black.withValues(alpha: 0.7),
         );
         chips.add(chip);
       },
@@ -46,7 +46,7 @@ class CardThree extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.6),
+                color: Colors.black.withValues(alpha: 0.6),
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
             ),
@@ -63,7 +63,7 @@ class CardThree extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     recipe.title,
-                    style: FooderlichTheme.darkTextTheme.headline2,
+                    style: FooderlichTheme.darkTextTheme.displayMedium,
                   ),
                   const SizedBox(height: 30),
                 ],
@@ -71,7 +71,6 @@ class CardThree extends StatelessWidget {
             ),
             Center(
               child: Wrap(
-                alignment: WrapAlignment.start,
                 spacing: 12,
                 children: _createTagChips(),
               ),

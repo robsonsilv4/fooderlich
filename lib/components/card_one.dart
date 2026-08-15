@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../fooderlich_theme.dart';
-import '../models/models.dart';
+import 'package:fooderlich/fooderlich_theme.dart';
+import 'package:fooderlich/models/models.dart';
 
 class CardOne extends StatelessWidget {
   const CardOne({
-    Key? key,
     required this.recipe,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ExploreRecipe recipe;
 
@@ -31,13 +31,13 @@ class CardOne extends StatelessWidget {
           children: [
             Text(
               recipe.subtitle,
-              style: FooderlichTheme.darkTextTheme.bodyText1,
+              style: FooderlichTheme.darkTextTheme.bodyLarge,
             ),
             Positioned(
               top: 20,
               child: Text(
                 recipe.title,
-                style: FooderlichTheme.darkTextTheme.headline2,
+                style: FooderlichTheme.darkTextTheme.displayMedium,
               ),
             ),
             Positioned(
@@ -45,7 +45,7 @@ class CardOne extends StatelessWidget {
               right: 0,
               child: Text(
                 recipe.message,
-                style: FooderlichTheme.darkTextTheme.bodyText1,
+                style: FooderlichTheme.darkTextTheme.bodyLarge,
               ),
             ),
             Positioned(
@@ -53,7 +53,7 @@ class CardOne extends StatelessWidget {
               right: 0,
               child: Text(
                 recipe.authorName,
-                style: FooderlichTheme.darkTextTheme.bodyText1,
+                style: FooderlichTheme.darkTextTheme.bodyLarge,
               ),
             ),
           ],

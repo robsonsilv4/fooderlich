@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
+import 'package:fooderlich/screens/screens.dart';
 import 'package:provider/provider.dart';
-
-import '../models/models.dart';
-import 'screens.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
-    Key? key,
     required this.currentTab,
-  }) : super(key: key);
+    super.key,
+  });
 
-  static MaterialPage page(int currentTab) {
+  static MaterialPage<void> page(int currentTab) {
     return MaterialPage(
       name: FooderlichPages.homePath,
       key: ValueKey(FooderlichPages.homePath),
@@ -23,7 +22,7 @@ class HomeScreen extends StatefulWidget {
   final int currentTab;
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'Fooderlish',
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
         ),
         actions: [
           _profileButton(),
@@ -85,7 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
             'assets/profile_pics/person_stef.jpeg',
           ),
         ),
-        onTap: () => context.read<ProfileManager>().tapOnProfile(true),
+        onTap: () =>
+            context.read<ProfileManager>().tapOnProfile(selected: true),
       ),
     );
   }

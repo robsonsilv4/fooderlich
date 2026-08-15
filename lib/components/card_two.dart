@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/components/author_card.dart';
+import 'package:fooderlich/fooderlich_theme.dart';
 import 'package:fooderlich/models/models.dart';
 
-import '../fooderlich_theme.dart';
-import 'author_card.dart';
-
 class CardTwo extends StatelessWidget {
-  const CardTwo({Key? key, required this.recipe}) : super(key: key);
+  const CardTwo({required this.recipe, super.key});
 
   final ExploreRecipe recipe;
 
@@ -39,7 +38,7 @@ class CardTwo extends StatelessWidget {
                     right: 16,
                     child: Text(
                       recipe.title,
-                      style: FooderlichTheme.lightTextTheme.headline1,
+                      style: FooderlichTheme.lightTextTheme.displaySmall,
                     ),
                   ),
                   Positioned(
@@ -49,7 +48,7 @@ class CardTwo extends StatelessWidget {
                       quarterTurns: 3,
                       child: Text(
                         recipe.subtitle,
-                        style: FooderlichTheme.lightTextTheme.headline1,
+                        style: FooderlichTheme.lightTextTheme.displaySmall,
                       ),
                     ),
                   ),

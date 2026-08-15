@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/fooderlich_pages.dart';
@@ -6,9 +6,9 @@ import 'package:fooderlich/models/models.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
-  const WebViewScreen({Key? key}) : super(key: key);
+  const WebViewScreen({super.key});
 
-  static MaterialPage page() => MaterialPage(
+  static MaterialPage<void> page() => MaterialPage(
         name: FooderlichPages.raywenderlich,
         key: ValueKey(
           FooderlichPages.raywenderlich,
@@ -21,12 +21,19 @@ class WebViewScreen extends StatefulWidget {
 }
 
 class _WebViewScreenState extends State<WebViewScreen> {
+  late final WebViewController _controller;
+
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) {
-      WebView.platform = SurfaceAndroidWebView();
-    }
+    unawaited(_initController());
+  }
+
+  Future<void> _initController() async {
+    final controller = WebViewController();
+    await controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    await controller.loadRequest(Uri.parse('https://www.raywenderlich.com/'));
+    _controller = controller;
   }
 
   @override
@@ -35,8 +42,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
       appBar: AppBar(
         title: const Text('raywenderlich.com'),
       ),
-      body: const WebView(
-        initialUrl: 'https://www.raywenderlich.com/',
+      body: WebViewWidget(
+        controller: _controller,
       ),
     );
   }

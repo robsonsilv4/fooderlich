@@ -1,18 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fooderlich/components/components.dart';
+import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../components/components.dart';
-import '../models/models.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
-    Key? key,
     required this.user,
-  }) : super(key: key);
+    super.key,
+  });
 
-  static MaterialPage page(User user) {
+  static MaterialPage<void> page(User user) {
     return MaterialPage(
       name: FooderlichPages.profilePath,
       key: ValueKey(FooderlichPages.profilePath),
@@ -28,14 +29,13 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            context.read<ProfileManager>().tapOnProfile(false);
+            context.read<ProfileManager>().tapOnProfile(selected: false);
           },
           icon: const Icon(Icons.close),
         ),
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 16),
             _buildProfile(),
@@ -84,7 +84,7 @@ class ProfileScreen extends StatelessWidget {
             onChanged: (value) {
               context.read<ProfileManager>().darkMode = value;
             },
-          )
+          ),
         ],
       ),
     );
@@ -98,17 +98,17 @@ class ProfileScreen extends StatelessWidget {
           title: const Text('View raywenderlich.com'),
           onTap: () async {
             if (kIsWeb) {
-              await launch('https://www.raywenderlich.com/');
+              await launchUrl(Uri.parse('https://www.raywenderlich.com/'));
             } else {
-              context.read<ProfileManager>().tapOnRayderlich(true);
+              context.read<ProfileManager>().tapOnRayderlich(selected: true);
             }
           },
         ),
         ListTile(
           title: const Text('Log out'),
           onTap: () {
-            context.read<ProfileManager>().tapOnProfile(false);
-            context.read<AppStateManager>().logOut();
+            context.read<ProfileManager>().tapOnProfile(selected: false);
+            unawaited(context.read<AppStateManager>().logOut());
           },
         ),
       ],

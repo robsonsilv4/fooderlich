@@ -1,35 +1,36 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
 
-import '../models/models.dart';
-
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
-  static MaterialPage page() => MaterialPage(
+  static MaterialPage<void> page() => MaterialPage(
         name: FooderlichPages.splashPath,
         key: ValueKey(FooderlichPages.splashPath),
         child: const SplashScreen(),
       );
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    context.read<AppStateManager>().initializeApp();
+    unawaited(context.read<AppStateManager>().initializeApp());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Image(
               height: 200,
               image: AssetImage('assets/fooderlich_assets/rw_logo.png'),

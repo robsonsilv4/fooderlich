@@ -1,11 +1,4 @@
 class SimpleRecipe {
-  String id;
-  String dishImage;
-  String title;
-  String duration;
-  String source;
-  List<String> information;
-
   SimpleRecipe({
     required this.id,
     required this.dishImage,
@@ -22,7 +15,13 @@ class SimpleRecipe {
       title: json['title'] as String,
       duration: json['duration'] as String,
       source: json['source'] as String,
-      information: json['information'].cast<String>() as List<String>,
+      information: (json['information'] as List<dynamic>).cast<String>(),
     );
   }
+  String id;
+  String dishImage;
+  String title;
+  String duration;
+  String source;
+  List<String> information;
 }

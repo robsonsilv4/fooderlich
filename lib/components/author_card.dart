@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
-import '../fooderlich_theme.dart';
-import 'circle_image.dart';
+import 'package:fooderlich/components/circle_image.dart';
+import 'package:fooderlich/fooderlich_theme.dart';
 
 class AuthorCard extends StatefulWidget {
   const AuthorCard({
-    Key? key,
     required this.authorName,
     required this.title,
+    super.key,
     this.imageProvider,
-  }) : super(key: key);
+  });
 
   final String authorName;
   final String title;
@@ -41,11 +40,11 @@ class _AuthorCardState extends State<AuthorCard> {
                 children: [
                   Text(
                     widget.authorName,
-                    style: FooderlichTheme.lightTextTheme.headline2,
+                    style: FooderlichTheme.lightTextTheme.displayMedium,
                   ),
                   Text(
                     widget.title,
-                    style: FooderlichTheme.lightTextTheme.headline3,
+                    style: FooderlichTheme.lightTextTheme.displayLarge,
                   ),
                 ],
               ),
