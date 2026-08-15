@@ -25,12 +25,12 @@ class ProfileManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void tapOnRayderlich(bool selected) {
+  void tapOnRayderlich({required bool selected}) {
     _tapOnRayderlich = selected;
     notifyListeners();
   }
 
-  void tapOnProfile(bool selected) {
+  void tapOnProfile({required bool selected}) {
     _didSelectUser = selected;
     notifyListeners();
   }

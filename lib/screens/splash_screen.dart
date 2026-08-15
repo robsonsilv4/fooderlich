@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
@@ -5,7 +7,7 @@ import 'package:provider/provider.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
-  static MaterialPage page() => MaterialPage(
+  static MaterialPage<void> page() => MaterialPage(
         name: FooderlichPages.splashPath,
         key: ValueKey(FooderlichPages.splashPath),
         child: const SplashScreen(),
@@ -19,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    context.read<AppStateManager>().initializeApp();
+    unawaited(context.read<AppStateManager>().initializeApp());
   }
 
   @override

@@ -5,7 +5,8 @@ import 'package:fooderlich/models/models.dart';
 
 class GroceryListScreen extends StatelessWidget {
   const GroceryListScreen({
-    required this.manager, super.key,
+    required this.manager,
+    super.key,
   });
 
   final GroceryManager manager;
@@ -44,7 +45,7 @@ class GroceryListScreen extends StatelessWidget {
               item: item,
               onComplete: (change) {
                 if (change != null) {
-                  manager.completeItem(index, change);
+                  manager.completeItem(index, change: change);
                 }
               },
             ),

@@ -4,7 +4,8 @@ import 'package:fooderlich/models/models.dart';
 
 class FriendPostTile extends StatelessWidget {
   const FriendPostTile({
-    required this.post, super.key,
+    required this.post,
+    super.key,
   });
 
   final Post post;

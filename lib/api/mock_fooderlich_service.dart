@@ -13,19 +13,22 @@ class MockFooderlichService {
   }
 
   Future<List<ExploreRecipe>> _getTodayRecipes() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future<void>.delayed(const Duration(milliseconds: 1000));
 
     final dataString = await _loadAsset(
       'assets/sample_data/sample_explore_recipes.json',
     );
 
-    final Map<String, dynamic> json = jsonDecode(dataString);
+    final json = jsonDecode(dataString) as Map<String, dynamic>;
 
-    if (json['recipes'] != null) {
+    final jsonRecipes = json['recipes'] as List<dynamic>?;
+    if (jsonRecipes != null) {
       final recipes = <ExploreRecipe>[];
-      json['recipes'].forEach((value) {
-        recipes.add(ExploreRecipe.fromJson(Color.toARGB32));
-      });
+      for (final value in jsonRecipes) {
+        recipes.add(
+          ExploreRecipe.fromJson(value as Map<String, dynamic>),
+        );
+      }
       return recipes;
     } else {
       return [];
@@ -33,19 +36,20 @@ class MockFooderlichService {
   }
 
   Future<List<Post>> _getFriendFeed() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future<void>.delayed(const Duration(milliseconds: 1000));
 
     final dataString = await _loadAsset(
       'assets/sample_data/sample_friends_feed.json',
     );
 
-    final Map<String, dynamic> json = jsonDecode(dataString);
+    final json = jsonDecode(dataString) as Map<String, dynamic>;
 
-    if (json['feed'] != null) {
+    final jsonFeed = json['feed'] as List<dynamic>?;
+    if (jsonFeed != null) {
       final posts = <Post>[];
-      json['feed'].forEach((value) {
-        posts.add(Post.fromJson(Color.toARGB32));
-      });
+      for (final value in jsonFeed) {
+        posts.add(Post.fromJson(value as Map<String, dynamic>));
+      }
       return posts;
     } else {
       return [];
@@ -53,19 +57,22 @@ class MockFooderlichService {
   }
 
   Future<List<SimpleRecipe>> getRecipes() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future<void>.delayed(const Duration(milliseconds: 1000));
 
     final dataString = await _loadAsset(
       'assets/sample_data/sample_recipes.json',
     );
 
-    final Map<String, dynamic> json = jsonDecode(dataString);
+    final json = jsonDecode(dataString) as Map<String, dynamic>;
 
-    if (json['recipes'] != null) {
+    final jsonRecipes = json['recipes'] as List<dynamic>?;
+    if (jsonRecipes != null) {
       final recipes = <SimpleRecipe>[];
-      json['recipes'].forEach((value) {
-        recipes.add(SimpleRecipe.fromJson(Color.toARGB32));
-      });
+      for (final value in jsonRecipes) {
+        recipes.add(
+          SimpleRecipe.fromJson(value as Map<String, dynamic>),
+        );
+      }
       return recipes;
     } else {
       return [];

@@ -1,5 +1,4 @@
 class Post {
-
   Post({
     required this.id,
     required this.profileImageUrl,
@@ -10,11 +9,11 @@ class Post {
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      id: json['id'] ?? '',
-      profileImageUrl: json['profileImageUrl'] ?? '',
-      comment: json['comment'] ?? '',
-      foodPictureUrl: json['foodPictureUrl'] ?? '',
-      timestamp: json['timestamp'] ?? '',
+      id: json['id'] as String? ?? '',
+      profileImageUrl: json['profileImageUrl'] as String? ?? '',
+      comment: json['comment'] as String? ?? '',
+      foodPictureUrl: json['foodPictureUrl'] as String? ?? '',
+      timestamp: json['timestamp'] as String? ?? '',
     );
   }
   String id;

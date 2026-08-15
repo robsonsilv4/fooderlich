@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fooderlich/components/components.dart';
@@ -8,19 +10,23 @@ import 'package:uuid/uuid.dart';
 
 class GroceryItemScreen extends StatefulWidget {
   const GroceryItemScreen({
-    required this.onCreate, required this.onUpdate, super.key,
+    required this.onCreate,
+    required this.onUpdate,
+    super.key,
     this.originalItem,
     this.index = -1,
-  })  : isUpdating = (originalItem != null);
+  }) : isUpdating = (originalItem != null);
 
-  final Function(GroceryItem) onCreate;
-  final Function(GroceryItem, int) onUpdate;
+  final ValueChanged<GroceryItem> onCreate;
+  final void Function(GroceryItem item, int index) onUpdate;
   final GroceryItem? originalItem;
   final bool isUpdating;
   final int index;
 
-  static MaterialPage page({
-    required Function(GroceryItem) onCreate, required Function(GroceryItem, int) onUpdate, GroceryItem? item,
+  static MaterialPage<void> page({
+    required ValueChanged<GroceryItem> onCreate,
+    required void Function(GroceryItem item, int index) onUpdate,
+    GroceryItem? item,
     int index = -1,
   }) {
     return MaterialPage(
@@ -314,24 +320,26 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         ),
         TextButton(
           onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  content: BlockPicker(
-                    pickerColor: Colors.white,
-                    onColorChanged: (color) => setState(
-                      () => _currentColor = color,
+            unawaited(
+              showDialog<void>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: BlockPicker(
+                      pickerColor: Colors.white,
+                      onColorChanged: (color) => setState(
+                        () => _currentColor = color,
+                      ),
                     ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Save'),
-                    ),
-                  ],
-                );
-              },
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('Save'),
+                      ),
+                    ],
+                  );
+                },
+              ),
             );
           },
           child: const Text('Select'),

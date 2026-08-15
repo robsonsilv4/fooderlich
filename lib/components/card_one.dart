@@ -5,7 +5,8 @@ import 'package:fooderlich/models/models.dart';
 
 class CardOne extends StatelessWidget {
   const CardOne({
-    required this.recipe, super.key,
+    required this.recipe,
+    super.key,
   });
 
   final ExploreRecipe recipe;

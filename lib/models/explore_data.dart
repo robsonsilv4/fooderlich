@@ -1,7 +1,6 @@
 import 'package:fooderlich/models/models.dart';
 
 class ExploreData {
-
   ExploreData(
     this.todayRecipes,
     this.friendPosts,

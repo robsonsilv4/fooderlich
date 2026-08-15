@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/models.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
-  static MaterialPage page() => MaterialPage(
+  static MaterialPage<void> page() => MaterialPage(
         name: FooderlichPages.onboardingPath,
         key: ValueKey(FooderlichPages.onboardingPath),
         child: const OnboardingScreen(),
@@ -117,7 +119,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       children: [
         MaterialButton(
           onPressed: () {
-            context.read<AppStateManager>().completeOnboarding();
+            unawaited(context.read<AppStateManager>().completeOnboarding());
           },
           child: const Text('Skip'),
         ),

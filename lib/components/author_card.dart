@@ -4,7 +4,9 @@ import 'package:fooderlich/fooderlich_theme.dart';
 
 class AuthorCard extends StatefulWidget {
   const AuthorCard({
-    required this.authorName, required this.title, super.key,
+    required this.authorName,
+    required this.title,
+    super.key,
     this.imageProvider,
   });
 

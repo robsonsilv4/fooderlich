@@ -4,7 +4,8 @@ import 'package:fooderlich/models/models.dart';
 
 class FriendPostListView extends StatelessWidget {
   const FriendPostListView({
-    required this.friendPosts, super.key,
+    required this.friendPosts,
+    super.key,
   });
 
   final List<Post> friendPosts;

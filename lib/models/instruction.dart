@@ -1,7 +1,6 @@
 part of 'explore_recipe.dart';
 
 class Instruction {
-
   Instruction({
     required this.imageUrl,
     required this.description,
@@ -10,9 +9,9 @@ class Instruction {
 
   factory Instruction.fromJson(Map<String, dynamic> json) {
     return Instruction(
-      imageUrl: json['imageUrl'] ?? '',
-      description: json['description'] ?? '',
-      durationInMinutes: json['durationInMinutes'] ?? '',
+      imageUrl: json['imageUrl'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      durationInMinutes: json['durationInMinutes'] as int? ?? 0,
     );
   }
   String imageUrl;

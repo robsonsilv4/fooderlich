@@ -4,7 +4,8 @@ import 'package:fooderlich/models/models.dart';
 
 class TodayRecipeListView extends StatelessWidget {
   const TodayRecipeListView({
-    required this.recipes, super.key,
+    required this.recipes,
+    super.key,
   });
 
   final List<ExploreRecipe> recipes;

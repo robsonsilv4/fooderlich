@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:fooderlich/models/fooderlich_pages.dart';
 import 'package:fooderlich/models/models.dart';
@@ -6,7 +8,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class WebViewScreen extends StatefulWidget {
   const WebViewScreen({super.key});
 
-  static MaterialPage page() => MaterialPage(
+  static MaterialPage<void> page() => MaterialPage(
         name: FooderlichPages.raywenderlich,
         key: ValueKey(
           FooderlichPages.raywenderlich,
@@ -24,9 +26,14 @@ class _WebViewScreenState extends State<WebViewScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://www.raywenderlich.com/'));
+    unawaited(_initController());
+  }
+
+  Future<void> _initController() async {
+    final controller = WebViewController();
+    await controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    await controller.loadRequest(Uri.parse('https://www.raywenderlich.com/'));
+    _controller = controller;
   }
 
   @override

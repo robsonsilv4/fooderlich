@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:fooderlich/models/models.dart';
 import 'package:fooderlich/navigation/navigation.dart';
@@ -5,7 +7,6 @@ import 'package:fooderlich/screens/screens.dart';
 
 class AppRouter extends RouterDelegate<AppLink>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-
   AppRouter({
     required this.appStateManager,
     required this.profileManager,
@@ -38,16 +39,14 @@ class AppRouter extends RouterDelegate<AppLink>
         if (groceryManager.isCreatingNewItem)
           GroceryItemScreen.page(
             onCreate: groceryManager.addItem,
-            onUpdate: (item, index) => {},
+            onUpdate: (item, index) {},
           ),
         if (groceryManager.selectedIndex != -1)
           GroceryItemScreen.page(
             item: groceryManager.selectedGroceryItem,
             index: groceryManager.selectedIndex,
             onCreate: (_) {},
-            onUpdate: (item, index) {
-              groceryManager.updateItem(item, index);
-            },
+            onUpdate: groceryManager.updateItem,
           ),
         if (profileManager.didSelectUser)
           ProfileScreen.page(profileManager.getUser),
@@ -69,7 +68,7 @@ class AppRouter extends RouterDelegate<AppLink>
   Future<void> setNewRoutePath(AppLink configuration) async {
     switch (configuration.location) {
       case AppLink.kProfilePath:
-        profileManager.tapOnProfile(true);
+        profileManager.tapOnProfile(selected: true);
       case AppLink.kItemPath:
         final itemId = configuration.itemId;
         if (itemId != null) {
@@ -77,10 +76,10 @@ class AppRouter extends RouterDelegate<AppLink>
         } else {
           groceryManager.createNewItem();
         }
-        profileManager.tapOnProfile(false);
+        profileManager.tapOnProfile(selected: false);
       case AppLink.kHomePath:
         appStateManager.goToTab(configuration.currentTab ?? 0);
-        profileManager.tapOnProfile(false);
+        profileManager.tapOnProfile(selected: false);
         groceryManager.groceryItemTapped(-1);
       default:
         break;
@@ -112,7 +111,7 @@ class AppRouter extends RouterDelegate<AppLink>
 
   void _handleDidRemovePage(Page<Object?> page) {
     if (page.name == FooderlichPages.onboardingPath) {
-      appStateManager.logOut();
+      unawaited(appStateManager.logOut());
     }
 
     if (page.name == FooderlichPages.groceryItemDetails) {
@@ -120,11 +119,11 @@ class AppRouter extends RouterDelegate<AppLink>
     }
 
     if (page.name == FooderlichPages.profilePath) {
-      profileManager.tapOnProfile(false);
+      profileManager.tapOnProfile(selected: false);
     }
 
     if (page.name == FooderlichPages.raywenderlich) {
-      profileManager.tapOnRayderlich(false);
+      profileManager.tapOnRayderlich(selected: false);
     }
   }
 }

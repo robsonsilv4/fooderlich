@@ -58,7 +58,7 @@ class AppStateManager extends ChangeNotifier {
     _initialized = false;
     _selectedTab = 0;
     await _appCache.invalidate();
-    initializeApp();
+    await initializeApp();
     notifyListeners();
   }
 }
