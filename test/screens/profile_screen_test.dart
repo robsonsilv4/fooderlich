@@ -11,8 +11,8 @@ void main() {
       return User(
         firstName: 'Robson',
         lastName: 'Silva',
-        role: 'Flutterista',
-        profileImageUrl: 'assets/profile_pics/person_stef.jpeg',
+        role: 'Flutter Developer',
+        profileImageUrl: 'assets/profile_pics/person_robson.jpeg',
         points: 100,
         darkMode: darkMode,
       );

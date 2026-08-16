@@ -12,18 +12,18 @@ void main() {
         final user = User(
           firstName: 'Robson',
           lastName: 'Silva',
-          role: 'Flutterista',
-          profileImageUrl: 'assets/profile_pics/person_stef.jpeg',
+          role: 'Flutter Developer',
+          profileImageUrl: 'assets/profile_pics/person_robson.jpeg',
           points: 100,
           darkMode: true,
         );
 
         expect(user.firstName, equals('Robson'));
         expect(user.lastName, equals('Silva'));
-        expect(user.role, equals('Flutterista'));
+        expect(user.role, equals('Flutter Developer'));
         expect(
           user.profileImageUrl,
-          equals('assets/profile_pics/person_stef.jpeg'),
+          equals('assets/profile_pics/person_robson.jpeg'),
         );
         expect(user.points, equals(100));
         expect(user.darkMode, isTrue);

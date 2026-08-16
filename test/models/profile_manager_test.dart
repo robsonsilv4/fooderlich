@@ -68,7 +68,7 @@ void main() {
 
           expect(user.firstName, equals('Robson'));
           expect(user.lastName, equals('Silva'));
-          expect(user.role, equals('Flutterista'));
+          expect(user.role, equals('Flutter Developer'));
           expect(user.darkMode, isTrue);
           expect(user.points, equals(100));
         },
