@@ -4,10 +4,9 @@
   <img src="screenshots/banner.webp" alt="Fooderlich banner" width="90%">
 </p>
 
-A social recipe and grocery app built while working through *Flutter Apprentice*
-(Kodeco / raywenderlich). The app includes login and onboarding flows, a recipe
-explorer, a grocery list with quantity/color pickers, dark mode, and deep
-linking between screens.
+A social recipe and grocery app for Flutter. It includes login and onboarding
+flows, a recipe explorer, a grocery list with quantity/color pickers, dark mode,
+and deep linking between screens.
 
 ## Getting Started
 
@@ -45,8 +44,9 @@ MIT — see [LICENSE](LICENSE).
 
 ## Notes
 
-- Educational project from the *Flutter Apprentice* book (Kodeco). Kept as an
-  archive of the course work, updated to a modern Flutter toolchain in 2026.
+- Code structure follows the app built in the *Flutter Apprentice* book (Kodeco),
+  updated to a modern Flutter toolchain in 2026. See the Third-Party Notices in
+  [LICENSE](LICENSE) for the Kodeco license terms.
 - Web view and deep links are wired for the raywenderlich.com flow used in the
   book.
 - The test suite was added after the course and is not part of the book's

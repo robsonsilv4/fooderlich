@@ -31,10 +31,14 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              height: 200,
-              image: AssetImage('assets/fooderlich_assets/rw_logo.png'),
+            Icon(
+              Icons.restaurant_menu,
+              size: 120,
+              color: Color.fromRGBO(64, 143, 77, 1),
             ),
+            SizedBox(height: 16),
+            Text('Fooderlich', style: TextStyle(fontSize: 32)),
+            SizedBox(height: 8),
             Text('Initializing...'),
           ],
         ),

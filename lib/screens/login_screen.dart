@@ -38,9 +38,25 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       const SizedBox(
                         height: 200,
-                        child: Image(
-                          image: AssetImage(
-                            'assets/fooderlich_assets/rw_logo.png',
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.restaurant_menu,
+                                size: 72,
+                                color: Color.fromRGBO(64, 143, 77, 1),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                'Fooderlich',
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromRGBO(64, 143, 77, 1),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
