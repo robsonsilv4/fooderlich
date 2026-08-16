@@ -1,6 +1,12 @@
 # Fooderlich
 
 <p align="center">
+  <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.44-blue?logo=flutter&logoColor=white" alt="Flutter 3.44"></a>
+  <a href="https://dart.dev"><img src="https://img.shields.io/badge/Dart-3.12-blue?logo=dart&logoColor=white" alt="Dart 3.12"></a>
+  <a href="https://pub.dev/packages/very_good_analysis"><img src="https://img.shields.io/badge/style-very_good_analysis-blue?logo=dart&logoColor=white" alt="very_good_analysis"></a>
+</p>
+
+<p align="center">
   <img src="screenshots/banner.webp" alt="Fooderlich banner" width="90%">
 </p>
 
