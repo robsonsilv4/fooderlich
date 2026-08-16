@@ -1,5 +1,9 @@
 # Fooderlich
 
+<p align="center">
+  <img src="screenshots/banner.webp" alt="Fooderlich banner" width="90%">
+</p>
+
 A social recipe and grocery app built while working through *Flutter Apprentice*
 (Kodeco / raywenderlich). The app includes login and onboarding flows, a recipe
 explorer, a grocery list with quantity/color pickers, dark mode, and deep
