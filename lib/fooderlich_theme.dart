@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FooderlichTheme {
+  static const rwColor = Color.fromRGBO(64, 143, 77, 1);
+
   static TextTheme lightTextTheme = TextTheme(
     bodyLarge: GoogleFonts.openSans(
       fontSize: 14,
@@ -60,11 +62,18 @@ class FooderlichTheme {
 
   static ThemeData light() {
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.light,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: rwColor,
+      ),
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateColor.resolveWith(
           (states) {
-            return Colors.black;
+            if (states.contains(WidgetState.selected)) {
+              return rwColor;
+            }
+            return Colors.transparent;
           },
         ),
       ),
@@ -85,7 +94,12 @@ class FooderlichTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      useMaterial3: true,
       brightness: Brightness.dark,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: rwColor,
+        brightness: Brightness.dark,
+      ),
       appBarTheme: AppBarTheme(
         foregroundColor: Colors.white,
         backgroundColor: Colors.grey[900],

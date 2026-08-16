@@ -23,41 +23,44 @@ class CardTwo extends StatelessWidget {
           ),
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
-        child: Column(
-          children: [
-            AuthorCard(
-              authorName: recipe.authorName,
-              title: recipe.role,
-              imageProvider: recipe.profileImage.isEmpty
-                  ? null
-                  : AssetImage(recipe.profileImage),
-            ),
-            Expanded(
-              child: Stack(
-                children: [
-                  Positioned(
-                    bottom: 16,
-                    right: 16,
-                    child: Text(
-                      recipe.title,
-                      style: FooderlichTheme.lightTextTheme.displaySmall,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 70,
-                    left: 16,
-                    child: RotatedBox(
-                      quarterTurns: 3,
+        child: Theme(
+          data: ThemeData.dark(),
+          child: Column(
+            children: [
+              AuthorCard(
+                authorName: recipe.authorName,
+                title: recipe.role,
+                imageProvider: recipe.profileImage.isEmpty
+                    ? null
+                    : AssetImage(recipe.profileImage),
+              ),
+              Expanded(
+                child: Stack(
+                  children: [
+                    Positioned(
+                      bottom: 16,
+                      right: 16,
                       child: Text(
-                        recipe.subtitle,
-                        style: FooderlichTheme.lightTextTheme.displaySmall,
+                        recipe.title,
+                        style: FooderlichTheme.darkTextTheme.displaySmall,
                       ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      bottom: 70,
+                      left: 16,
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: Text(
+                          recipe.subtitle,
+                          style: FooderlichTheme.darkTextTheme.displaySmall,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

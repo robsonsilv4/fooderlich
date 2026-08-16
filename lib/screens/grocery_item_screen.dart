@@ -172,8 +172,10 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           cursorColor: _currentColor,
           decoration: InputDecoration(
             hintText: 'E.g. Apples, Banana, 1 Bag of salt',
-            enabledBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.outlineVariant,
+              ),
             ),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: _currentColor),
@@ -198,42 +200,37 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         Wrap(
           spacing: 30,
           children: [
-            ChoiceChip(
-              label: const Text(
-                'low',
-                style: TextStyle(color: Colors.white),
-              ),
-              selected: _importance == Importance.low,
-              selectedColor: Colors.black,
-              onSelected: (_) => setState(
-                () => _importance = Importance.low,
-              ),
-            ),
-            ChoiceChip(
-              label: const Text(
-                'medium',
-                style: TextStyle(color: Colors.white),
-              ),
-              selected: _importance == Importance.medium,
-              selectedColor: Colors.black,
-              onSelected: (_) => setState(
-                () => _importance = Importance.medium,
-              ),
-            ),
-            ChoiceChip(
-              label: const Text(
-                'high',
-                style: TextStyle(color: Colors.white),
-              ),
-              selected: _importance == Importance.high,
-              selectedColor: Colors.black,
-              onSelected: (_) => setState(
-                () => _importance = Importance.high,
-              ),
-            ),
+            _buildImportanceChip(Importance.low, 'low'),
+            _buildImportanceChip(Importance.medium, 'medium'),
+            _buildImportanceChip(Importance.high, 'high'),
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildImportanceChip(Importance importance, String label) {
+    return Builder(
+      builder: (context) {
+        return ChoiceChip(
+          label: Text(
+            label,
+            style: TextStyle(
+              color: _importance == importance
+                  ? Colors.white
+                  : Theme.of(context).colorScheme.onSurface,
+              fontWeight: _importance == importance
+                  ? FontWeight.bold
+                  : FontWeight.normal,
+            ),
+          ),
+          selected: _importance == importance,
+          selectedColor: Colors.black,
+          onSelected: (_) => setState(
+            () => _importance = importance,
+          ),
+        );
+      },
     );
   }
 

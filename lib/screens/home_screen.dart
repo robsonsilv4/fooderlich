@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         currentIndex: widget.currentTab,
         onTap: (index) => context.read<AppStateManager>().goToTab(index),
         items: const [

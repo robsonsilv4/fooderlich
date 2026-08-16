@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/components/circle_image.dart';
-import 'package:fooderlich/fooderlich_theme.dart';
 
 class AuthorCard extends StatefulWidget {
   const AuthorCard({
@@ -42,12 +41,12 @@ class _AuthorCardState extends State<AuthorCard> {
                       Text(
                         widget.authorName,
                         overflow: TextOverflow.ellipsis,
-                        style: FooderlichTheme.lightTextTheme.displayMedium,
+                        style: Theme.of(context).textTheme.displayMedium,
                       ),
                       Text(
                         widget.title,
                         overflow: TextOverflow.ellipsis,
-                        style: FooderlichTheme.lightTextTheme.displayLarge,
+                        style: Theme.of(context).textTheme.displayLarge,
                       ),
                     ],
                   ),
