@@ -54,22 +54,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       controller: _controller,
       children: [
         _onboardingPageView(
-          imageProvider: const AssetImage(
-            'assets/fooderlich_assets/recommend.png',
-          ),
+          icon: Icons.recommend,
           text:
               '''Check out weekly recommended recipes and what your friends are cooking!''',
         ),
         _onboardingPageView(
-          imageProvider: const AssetImage(
-            'assets/fooderlich_assets/sheet.png',
-          ),
+          icon: Icons.receipt_long,
           text: 'Cook with step by step instructions!',
         ),
         _onboardingPageView(
-          imageProvider: const AssetImage(
-            'assets/fooderlich_assets/list.png',
-          ),
+          icon: Icons.checklist,
           text: 'Keep track of what you need to buy',
         ),
       ],
@@ -77,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _onboardingPageView({
-    required ImageProvider imageProvider,
+    required IconData icon,
     required String text,
   }) {
     return Padding(
@@ -86,9 +80,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
-            child: Image(
-              image: imageProvider,
-              fit: BoxFit.fitWidth,
+            child: Center(
+              child: Icon(
+                icon,
+                size: 180,
+                color: _rwColor,
+              ),
             ),
           ),
           const SizedBox(height: 16),

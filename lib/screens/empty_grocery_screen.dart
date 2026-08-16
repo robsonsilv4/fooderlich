@@ -13,10 +13,14 @@ class EmptyGroceryScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Flexible(
+            const Flexible(
               child: AspectRatio(
                 aspectRatio: 1 / 1,
-                child: Image.asset('assets/fooderlich_assets/empty_list.png'),
+                child: Icon(
+                  Icons.inbox,
+                  size: 200,
+                  color: Colors.green,
+                ),
               ),
             ),
             const Text(
